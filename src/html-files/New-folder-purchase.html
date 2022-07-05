@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include( 'html/head.html', {
+"title": "NFters"
+})
+
+<body>
+	<div class="grid-wrapper">
+		@@include( 'html/saitbar.html', {} )
+		<div class="wrapper dashboard">
+			@@include( 'html/header-dashboard.html', {} )
+			<main class="main dashboard new-folder">
+				<div class="bread-crumbs">
+					<a href="#" class="bread-crumbs__link-back">Task manager</a>
+					<span class="bread-crumbs__slesh"> / </span>
+					<p class="bread-crumbs__current-page">New folder</p>
+				</div>
+
+				<div class="new-folder__header">
+					<div class="new-folder__left">
+						<div class="new-folder__folder-icon">
+							<svg style="width: 24px; height: 24px;">
+								<use xlink:href="@img/folder-icons/ic_paint-brush.svg#paint"></use>
+							</svg>
+						</div>
+						<div class="task-manager-folder__title-content">
+							<h3 class="new-folder__title-folder-name">
+								New folder
+								<a href="#" class="new-folder__title-folder-star">
+									<img src="@img/icon-star.svg" alt="" class="new-folder__title-folder-icon">
+								</a>
+							</h3>
+							<div class="task-manager-folder__title-folder-content-bottom">
+								<p class="task-manager-folder__title-folder-owner-name">Owner name</p>
+								<span></span>
+								<p class="task-manager-folder__title-folder-length-tasks">0 tasks</p>
+							</div>
+						</div>
+					</div>
+					<div class="empty-state-dashboard__buttons-right">
+						<a data-burger-link="1" href="#" class="empty-state-dashboard__button-link">
+							<img src="@img/all-icons/add.svg" alt="" class="empty-state-dashboard__button-link-icon">
+							New folder
+						</a>
+						<div class="empty-state-dashboard__view-accounts">
+							<div class="empty-state-dashboard__view-account">
+								<img src="@img/all-icons/mk.svg" alt="" class="empty-state-dashboard__view-account-img">
+							</div>
+							<div class="empty-state-dashboard__view-account">
+								<img src="@img/all-icons/mk.svg" alt="" class="empty-state-dashboard__view-account-img">
+							</div>
+							<div class="empty-state-dashboard__view-account">
+								+3
+							</div>
+						</div>
+						<a href="#" class="empty-state-dashboard__button-link">
+							<img src="@img/all-icons/plus.svg" alt="" class="empty-state-dashboard__button-link-icon">
+							Invite
+						</a>
+						<div class="empty-state-dashboard__more-menu">
+
+							<a data-add-more="11" href="#" class="empty-state-dashboard__button-link more">
+								<img src="@img/all-icons/elipses-menu.svg" alt="" class="empty-state-dashboard__button-link-icon">
+							</a>
+			
+							<ul data-add-more="11" class="empty-state-dashboard__menu-list">
+								<li class="empty-state-dashboard__menu-item">
+									<a data-burger-link="1" href="#" class="empty-state-dashboard__menu-link">
+										<img src="@img/more-icons/ic_rename.svg" alt="" class="empty-state-dashboard__menu-icon">
+										Edit
+									</a>
+								</li>
+								<li class="empty-state-dashboard__menu-item">
+									<a href="#" class="empty-state-dashboard__menu-link">
+										<img src="@img/more-icons/ic_move.svg" alt="" class="empty-state-dashboard__menu-icon">
+										Move to..
+									</a>
+								</li>
+								<li class="empty-state-dashboard__menu-item">
+									<a data-burger-link="8" href="#" class="empty-state-dashboard__menu-link">
+										<img src="@img/more-icons/ic_doc.svg" alt="" class="empty-state-dashboard__menu-icon">
+										Saved templates
+									</a>
+								</li>
+								<li class="empty-state-dashboard__menu-item">
+									<a data-burger-link="7" href="#" class="empty-state-dashboard__menu-link">
+										<img src="@img/more-icons/ic_contacts.svg" alt="" class="empty-state-dashboard__menu-icon">
+										Accesses permissions
+									</a>
+								</li>
+								<li class="empty-state-dashboard__menu-item">
+									<a data-notification-link="1" href="#" class="empty-state-dashboard__menu-link">
+										<img src="@img/more-icons/ic_archive.svg" alt="" class="empty-state-dashboard__menu-icon">
+										Move to archive
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="archive-notification" data-notification="1">
+					Task archived
+					<a data-notification-close="1" href="#" class="archive-notification__close">
+						<img src="@img/exit.svg" alt="" class="archive-notification__close-icon">
+					</a>
+				</div>
+
+				@@include( "html/new-folder-tasks3.html", {} )
+				@@include( "html/all-tasks-list2.html", {} )
+			</main>
+			@@include( 'html/menu-burger.html', {} )
+			@@include( "html/new-folder-tasks-burger/new-task-types-purchase.html", {} )
+			@@include( "html/new-folder-tasks-burger/new-task-setting-purchase.html", {} )
+			@@include( "html/new-folder-tasks-burger/new-sub-task-setting.html", {} )
+			@@include( "html/new-folder-tasks-burger/new-task-notification.html", {} )
+			@@include( "html/new-folder-tasks-burger/view-task-info.html", {} )
+			@@include( "html/new-folder-tasks-burger/burger-accesses.html", {} )
+			@@include( "html/new-folder-tasks-burger/burger-templates.html", {} )
+			@@include( "html/new-folder-tasks-burger/view-task-info-purchase.html", {} )
+		</div>
+	</div>
+
+	<script src="js/app.min.js"></script>
+</body>
+
+</html>

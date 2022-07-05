@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include( 'html/head.html', {
+"title": "NFters"
+})
+
+<body>
+	<div class="grid-wrapper">
+		@@include( 'html/saitbar.html', {} )
+		<div class="wrapper dashboard">
+			@@include( 'html/header-dashboard.html', {} )
+			<main class="main dashboard">
+				<h1 class="new-folder-tasks__big-title">Archive</h1>
+
+				@@include( 'html/new-folder-tasks2.html' )
+			</main>
+			@@include( 'html/menu-burger.html', {} )
+		</div>
+	</div>
+
+	<script src="js/app.min.js"></script>
+</body>
+
+</html>
