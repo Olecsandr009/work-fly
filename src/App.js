@@ -22,9 +22,16 @@ import EmptyDashboard from "./components/dashboard/EmptyDashboard";
 export default function BasicExample() {
 
     let [popupDataState, setPopupDataState] = useState(0);
-    // console.log(-1)
 
-    // console.log(popupState);
+    let allFoldersArray = [
+        // {
+        //     name: "",
+        //     color: "",
+        //     icon: "",
+        //     type: "",
+        //     author: ""
+        // }
+    ]
 
     function exitAllPopups(e) {
         if (e) {
@@ -87,7 +94,7 @@ export default function BasicExample() {
                         <Route path="/Authentication/Register/Verification-code" element={<VerificationCode />} />
                         <Route path="/Authentication/Register/Registration" element={<Registration />} />
                     </Route>
-                    <Route element={<Dashboard exitAllPopups={exitAllPopups} popupDataState={popupDataState} setPopupDataState={setPopupDataState} />} path="/Dashboard">
+                    <Route element={<Dashboard allFoldersArray={allFoldersArray} exitAllPopups={exitAllPopups} popupDataState={popupDataState} setPopupDataState={setPopupDataState} />} path="/Dashboard">
                         <Route path="/Dashboard/Empty-state" element={<EmptyDashboard />} />
                         <Route
                             path="/Dashboard/Task-manager"
@@ -96,6 +103,7 @@ export default function BasicExample() {
                                     popupDataState={popupDataState}
                                     setPopupDataState={setPopupDataState}
                                     exitAllPopups={exitAllPopups}
+                                    allFoldersArray={allFoldersArray}
                                 />
                             }
                         />

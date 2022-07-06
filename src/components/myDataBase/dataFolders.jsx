@@ -3,6 +3,7 @@ const dataFolder = [
         name: "",
         color: "",
         icon: "",
-        type: ""
+        type: "",
+        author: ""
     }
 ]

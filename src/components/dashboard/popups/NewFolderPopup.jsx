@@ -35,7 +35,6 @@ import arrowExitIcon from "../../../files/img/arrow-exit.svg";
 
 import * as radio from "../../ui-components/radio";
 
-
 export default function NewFolderPopup(props) {
 
     const arrayColor = {
@@ -80,11 +79,23 @@ export default function NewFolderPopup(props) {
         "icon-folder27": [appsIcon, "apps"],
     }
 
+    const arrayTypes = {
+        "folder-type1": "default",
+        "folder-type2": "purchase",
+        "folder-type3": "custom",
+    }
+
     // console.log(arrayIcons["icon-folder1"])
+
+    let [newFolderInputValue, setNewFolderInputValue] = useState("");
 
     let [newFolderIconState, setNewFolderIconState] = useState(arrayIcons["icon-folder1"]);
 
     let [newFolderColorState, setNewFolderColorState] = useState(arrayColor["color-folder1"]);
+
+    let [newFolderTypeState, setNewFolderTypeState] = useState("");
+
+    let [newFolderButtonState, setNewFolderButtonState] = useState(true);
 
     // console.log(document.getElementById("icon-folder1").id)
 
@@ -97,6 +108,8 @@ export default function NewFolderPopup(props) {
                 }
             }
         }
+
+        newFolderButtonStateFunc()
     })
 
     radio.radio();
@@ -107,6 +120,42 @@ export default function NewFolderPopup(props) {
 
     function newFolderColorFunc(e) {
         setNewFolderColorState(arrayColor[e.target.id]);
+    }
+
+    function newFolderInputValueFunc(e) {
+        setNewFolderInputValue(e.target.value);
+
+        // newFolderButtonStateFunc()
+    }
+
+    function newFolderTypeStateFunc(e) {
+        setNewFolderTypeState(arrayTypes[e.target.id]);
+
+        // newFolderButtonStateFunc()
+    }
+
+    function newFolderButtonStateFunc(e) {
+        if (!newFolderInputValue) {
+            setNewFolderButtonState(true)
+            return
+        }
+        if (!newFolderTypeState) {
+            setNewFolderButtonState(true)
+            return
+        }
+
+        setNewFolderButtonState(false);
+    }
+
+    function newFolderButtonClick(e) {
+        e.preventDefault();
+        props.allFoldersArray.push({
+            "name": newFolderInputValue,
+            "color": newFolderColorState,
+            "icon": newFolderIconState,
+            "type": newFolderTypeState,
+            "author": "",
+        })
     }
 
     return (
@@ -125,7 +174,7 @@ export default function NewFolderPopup(props) {
                             <use xlinkHref={`${newFolderIconState[0]}#${newFolderIconState[1]}`}></use>
                         </svg>
                     </div>
-                    <input type="text" className="menu-burger__input-name" placeholder="Folder name" autoFocus="autofocus" />
+                    <input type="text" onChange={newFolderInputValueFunc} value={newFolderInputValue} className="menu-burger__input-name" placeholder="Folder name" autoFocus="autofocus" />
                 </div>
                 <h3 className="menu-burger__title">Apperience</h3>
                 <div data-form-radio-group="1" className="menu-burger__folder-colors">
@@ -367,7 +416,7 @@ export default function NewFolderPopup(props) {
                         <p className="menu-burger__folder-type-text">
                             You can add any type of task to this folder.
                         </p>
-                        <input data-input-radio="3" id="folder-type1" type="radio" name="folder-type"
+                        <input onClick={newFolderTypeStateFunc} data-input-radio="3" id="folder-type1" type="radio" name="folder-type"
                             className="menu-burger__folder-type-input" />
                     </label>
                     <label data-label-radio="3" htmlFor="folder-type2" className="menu-burger__folder-type-label">
@@ -378,7 +427,7 @@ export default function NewFolderPopup(props) {
                         <p className="menu-burger__folder-type-text">
                             You can add any type of task to this folder.
                         </p>
-                        <input data-input-radio="3" id="folder-type2" type="radio" name="folder-type"
+                        <input onClick={newFolderTypeStateFunc} data-input-radio="3" id="folder-type2" type="radio" name="folder-type"
                             className="menu-burger__folder-type-input" />
                     </label>
                     <label data-label-radio="3" htmlFor="folder-type3" className="menu-burger__folder-type-label">
@@ -389,14 +438,14 @@ export default function NewFolderPopup(props) {
                         <p className="menu-burger__folder-type-text">
                             You can add only specified task templates.
                         </p>
-                        <input data-input-radio="3" id="folder-type3" type="radio" name="folder-type"
+                        <input onClick={newFolderTypeStateFunc} data-input-radio="3" id="folder-type3" type="radio" name="folder-type"
                             className="menu-burger__folder-type-input" />
                     </label>
                 </div>
             </div>
 
             <div className="menu-burger__content-bottom">
-                <button disabled className="menu-burger__folder-type-submit btn-blue">Create folder</button>
+                <button onClick={newFolderButtonClick} disabled={newFolderButtonState} className="menu-burger__folder-type-submit btn-blue">Create folder</button>
             </div>
         </form>
     )
