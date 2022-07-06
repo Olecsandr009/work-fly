@@ -24,6 +24,7 @@ export default class Dashboard extends React.Component {
                         </div>
                     </div>
                     <NewFolderPopup
+                        exitAllPopups={this.props.exitAllPopups}
                         popupDataState={this.props.popupDataState}
                         setPopupDataState={this.props.setPopupDataState}
                     />

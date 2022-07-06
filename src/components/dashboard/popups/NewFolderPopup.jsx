@@ -54,7 +54,7 @@ export default function NewFolderPopup(props) {
     return (
         <form data-burger="1" action="#" className="menu-burger">
             <div className="menu-burger__content-top">
-                <a data-burger-exit="1" href="#" className="menu-burger__arrow-exit">
+                <a data-burger-exit="1" onClick={props.exitAllPopups} href="#" className="menu-burger__arrow-exit">
                     <img src={arrowExitIcon} alt="" className="menu-burger__arrow-exit-icon" />
                 </a>
             </div>

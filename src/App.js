@@ -26,7 +26,13 @@ export default function BasicExample() {
 
     // console.log(popupState);
 
-    function exitAllPopups() {
+    function exitAllPopups(e) {
+        if (e) {
+            e.preventDefault()
+        }
+
+        setPopupDataState(0);
+
         const burger = document.querySelectorAll("[data-burger]");
         const burgerLink = document.querySelectorAll("[data-burger-link]");
 
