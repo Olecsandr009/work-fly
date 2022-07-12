@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -19,19 +19,9 @@ import Authentication from "./components/Authentication";
 import EmptyDashboard from "./components/dashboard/EmptyDashboard";
 // import "../public/js/app.min"
 
-export default function BasicExample() {
+export default function App(props) {
 
     let [popupDataState, setPopupDataState] = useState(0);
-
-    let allFoldersArray = [
-        // {
-        //     name: "",
-        //     color: "",
-        //     icon: "",
-        //     type: "",
-        //     author: ""
-        // }
-    ]
 
     function exitAllPopups(e) {
         if (e) {
@@ -94,7 +84,15 @@ export default function BasicExample() {
                         <Route path="/Authentication/Register/Verification-code" element={<VerificationCode />} />
                         <Route path="/Authentication/Register/Registration" element={<Registration />} />
                     </Route>
-                    <Route element={<Dashboard allFoldersArray={allFoldersArray} exitAllPopups={exitAllPopups} popupDataState={popupDataState} setPopupDataState={setPopupDataState} />} path="/Dashboard">
+                    <Route element={
+                        <Dashboard
+                            allFoldersArray={props.allFoldersArray}
+                            exitAllPopups={exitAllPopups}
+                            popupDataState={popupDataState}
+                            setPopupDataState={setPopupDataState}
+                            addFolderFunction={props.addFolderFunction}
+                        />
+                    } path="/Dashboard">
                         <Route path="/Dashboard/Empty-state" element={<EmptyDashboard />} />
                         <Route
                             path="/Dashboard/Task-manager"
@@ -103,7 +101,7 @@ export default function BasicExample() {
                                     popupDataState={popupDataState}
                                     setPopupDataState={setPopupDataState}
                                     exitAllPopups={exitAllPopups}
-                                    allFoldersArray={allFoldersArray}
+                                    allFoldersArray={props.allFoldersArray}
                                 />
                             }
                         />

@@ -149,7 +149,8 @@ export default function NewFolderPopup(props) {
 
     function newFolderButtonClick(e) {
         e.preventDefault();
-        props.allFoldersArray.push({
+
+        props.addFolderFunction({
             "name": newFolderInputValue,
             "color": newFolderColorState,
             "icon": newFolderIconState,

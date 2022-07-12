@@ -23,6 +23,53 @@ export default function TaskManager(props) {
         const burgerLinkNum = e.target.dataset.burgerLink;
 
         props.setPopupDataState(burgerLinkNum);
+
+    }
+
+    function returnAllFolders(array) {
+        if (array) {
+            return (
+                <>
+                    {
+                        array.map((object, index) => (
+                            <a key={index} href="#" className="task-manager-folder">
+                                <div style={{ "backgroundColor": object.color }} className="task-manager-folder__title-top">
+                                    <div className="task-manager-folder__title-icon">
+                                        <svg style={{ "width": "44px", "height": "44px" }}>
+                                            <use xlinkHref={`${object.icon[0]}#${object.icon[1]}`}></use>
+                                        </svg>
+                                    </div>
+                                    <div className="task-manager-folder__title-content">
+                                        <h3 className="task-manager-folder__title-folder-name">{object.name}</h3>
+                                        <div className="task-manager-folder__title-folder-content-bottom">
+                                            <p className="task-manager-folder__title-folder-owner-name">{object.author}</p>
+                                            <span></span>
+                                            <p className="task-manager-folder__title-folder-length-tasks">0 tasks</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="task-manager-folder__content-bottom">
+                                    <div className="task-manager-folder__members">
+                                        <p className="task-manager-folder__members-text">Members</p>
+                                        <div className="task-manager-folder__members-avatars">
+                                            <img src="@img/avatar2.svg" alt=""
+                                                className="task-manager-folder__members-avatars-image" />
+                                            <img src="@img/avatar2.svg" alt=""
+                                                className="task-manager-folder__members-avatars-image" />
+                                            <p className="task-manager-folder__members-avatar-length">+3</p>
+                                        </div>
+                                    </div>
+                                    <div className="task-manager-folder__feedbacks">
+                                        <p className="task-manager-folder__feedback-length">2 new</p>
+                                        <p className="task-manager-folder__feedback-length red">2 alert</p>
+                                    </div>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </>
+            )
+        }
     }
 
     return (
@@ -104,72 +151,7 @@ export default function TaskManager(props) {
             </section>
 
             <div className="task-manager-folders">
-                <a href="#" className="task-manager-folder">
-                    <div className="task-manager-folder__title-top">
-                        <div className="task-manager-folder__title-icon">
-                            <svg style={{ "width": "44px", "height": "44px" }}>
-                                <use xlinkHref="@img/folder-icons/ic_send.svg#send"></use>
-                            </svg>
-                        </div>
-                        <div className="task-manager-folder__title-content">
-                            <h3 className="task-manager-folder__title-folder-name">New folder (2)</h3>
-                            <div className="task-manager-folder__title-folder-content-bottom">
-                                <p className="task-manager-folder__title-folder-owner-name">Katerina Abra..</p>
-                                <span></span>
-                                <p className="task-manager-folder__title-folder-length-tasks">0 tasks</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="task-manager-folder__content-bottom">
-                        <div className="task-manager-folder__members">
-                            <p className="task-manager-folder__members-text">Members</p>
-                            <div className="task-manager-folder__members-avatars">
-                                <img src="@img/avatar2.svg" alt=""
-                                    className="task-manager-folder__members-avatars-image" />
-                                <img src="@img/avatar2.svg" alt=""
-                                    className="task-manager-folder__members-avatars-image" />
-                                <p className="task-manager-folder__members-avatar-length">+3</p>
-                            </div>
-                        </div>
-                        <div className="task-manager-folder__feedbacks">
-                            <p className="task-manager-folder__feedback-length">2 new</p>
-                            <p className="task-manager-folder__feedback-length red">2 alert</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" className="task-manager-folder">
-                    <div className="task-manager-folder__title-top">
-                        <div className="task-manager-folder__title-icon">
-                            <svg style={{ "width": "44px", "height": "44px" }}>
-                                <use xlinkHref="@img/folder-icons/ic_send.svg#send"></use>
-                            </svg>
-                        </div>
-                        <div className="task-manager-folder__title-content">
-                            <h3 className="task-manager-folder__title-folder-name">New foldera (2)</h3>
-                            <div className="task-manager-folder__title-folder-content-bottom">
-                                <p className="task-manager-folder__title-folder-owner-name">Katerana Abraaa</p>
-                                <span></span>
-                                <p className="task-manager-folder__title-folder-length-tasks">0 tasks</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="task-manager-folder__content-bottom">
-                        <div className="task-manager-folder__members">
-                            <p className="task-manager-folder__members-text">Members</p>
-                            <div className="task-manager-folder__members-avatars">
-                                <img src="@img/avatar2.svg" alt=""
-                                    className="task-manager-folder__members-avatars-image" />
-                                <img src="@img/avatar2.svg" alt=""
-                                    className="task-manager-folder__members-avatars-image" />
-                                <p className="task-manager-folder__members-avatar-length">+3</p>
-                            </div>
-                        </div>
-                        <div className="task-manager-folder__feedbacks">
-                            <p className="task-manager-folder__feedback-length">2 new</p>
-                            <p className="task-manager-folder__feedback-length red">2 alert</p>
-                        </div>
-                    </div>
-                </a>
+                {returnAllFolders(props.allFoldersArray)}
             </div>
         </>
     )
