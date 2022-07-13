@@ -1171,6 +1171,7 @@ body {
 
 .empty-state-dashboard.no-empty .empty-state-dashboard__center-content {
   opacity: 0;
+  display: none;
 }
 
 .empty-state-dashboard__title {

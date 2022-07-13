@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import addIcon from "../../files/img/all-icons/add.svg";
 import mkIcon from "../../files/img/all-icons/mk.svg";
 import plusIcon from "../../files/img/all-icons/plus.svg";
 import elipseIcon from "../../files/img/all-icons/elipses-menu.svg";
+import illustrantion4 from "../../files/img/illustration4.svg";
 
 // More icons
 
@@ -12,6 +13,7 @@ import moveIcon from "../../files/img/more-icons/ic_move.svg";
 import docIcon from "../../files/img/more-icons/ic_doc.svg";
 import contactsIcon from "../../files/img/more-icons/ic_contacts.svg";
 import archiveIcon from "../../files/img/more-icons/ic_archive.svg";
+import add from "../../files/img/all-icons/add.svg";
 
 export default function TaskManager(props) {
 
@@ -72,9 +74,28 @@ export default function TaskManager(props) {
         }
     }
 
+    let [isEmptyState, setIsEmptyState] = useState("");
+
+    function isEmptyFolders() {
+
+        if (document.querySelector(".task-manager-folders .task-manager-folder")) {
+            if (isEmptyState !== "no-empty") {
+                setIsEmptyState("no-empty");
+            }
+        } else {
+            if (isEmptyState !== "") {
+                setIsEmptyState("");
+            }
+        }
+    }
+
+    useEffect(() => {
+        isEmptyFolders()
+    })
+
     return (
         <>
-            <section className="empty-state-dashboard no-empty">
+            <section className={`empty-state-dashboard ${isEmptyState}`}>
                 <div className="empty-state-dashboard__header">
                     <h2 className="empty-state-dashboard__title">Task manager</h2>
                     <div className="empty-state-dashboard__buttons-right">
@@ -140,11 +161,11 @@ export default function TaskManager(props) {
                 </div>
                 <div className="empty-state-dashboard__center-content">
                     <div className="empty-state-dashboard__media">
-                        <img src="@img/illustration4.svg" alt="" className="empty-state-dashboard__image" />
+                        <img src={illustrantion4} alt="Image" className="empty-state-dashboard__image" />
                     </div>
                     <p className="empty-state-dashboard__text">This folder is empty</p>
-                    <a data-burger-link="1" href="#" className="empty-state-dashboard__button-link">
-                        <img src="@img/all-icons/add.svg" alt="" className="empty-state-dashboard__button-link-icon" />
+                    <a onClick={openPopupFunction} data-burger-link="1" href="#" className="empty-state-dashboard__button-link">
+                        <img src={addIcon} alt="Icon" className="empty-state-dashboard__button-link-icon" />
                         Add new folder
                     </a>
                 </div>
