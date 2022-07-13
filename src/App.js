@@ -13,6 +13,7 @@ import VerificationCode from "./components/authentification/Verification-code-pa
 import Registration from "./components/authentification/Registration";
 import Dashboard from "./components/Dashboard";
 import TaskManager from "./components/dashboard/TaskManager";
+import NewFolder from "./components/dashboard/NewFolder";
 
 import "./files/css/style.css";
 import Authentication from "./components/Authentication";
@@ -105,6 +106,7 @@ export default function App(props) {
                                 />
                             }
                         />
+                        <Route path="/Dashboard/New-folder" element={<NewFolder />} />
                     </Route>
                 </Routes>
             </Router >

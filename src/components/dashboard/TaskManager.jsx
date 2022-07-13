@@ -89,6 +89,24 @@ export default function TaskManager(props) {
         }
     }
 
+    function onClickMenu(e) {
+        const menu = document.querySelector(".empty-state-dashboard__menu-list");
+
+        e.preventDefault();
+
+        if (menu) {
+            menu.classList.toggle("active");
+        }
+    }
+
+    window.addEventListener("click", e => {
+        if (!e.target.closest(".empty-state-dashboard__menu-list") && !e.target.closest("[data-more-menu]")) {
+            if (document.querySelector(".empty-state-dashboard__menu-list.active")) {
+                document.querySelector(".empty-state-dashboard__menu-list").classList.remove("active");
+            }
+        }
+    })
+
     useEffect(() => {
         isEmptyFolders()
     })
@@ -120,11 +138,11 @@ export default function TaskManager(props) {
                         </a>
                         <div className="empty-state-dashboard__more-menu">
 
-                            <a data-add-more="10" href="#" className="empty-state-dashboard__button-link more">
+                            <a onClick={onClickMenu} data-more-menu href="#" className="empty-state-dashboard__button-link more">
                                 <img src={elipseIcon} alt="" className="empty-state-dashboard__button-link-icon" />
                             </a>
 
-                            <ul data-add-more="10" className="empty-state-dashboard__menu-list">
+                            <ul className="empty-state-dashboard__menu-list">
                                 <li className="empty-state-dashboard__menu-item">
                                     <a href="#" className="empty-state-dashboard__menu-link">
                                         <img src={renameIcon} alt="" className="empty-state-dashboard__menu-icon" />
