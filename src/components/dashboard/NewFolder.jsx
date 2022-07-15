@@ -175,13 +175,13 @@ export default function NewFolder(props) {
                         </a></li>
                     </ul>
                 </div>
-                <div className="new-folder-tasks__empty-tasks">
+                {/* <div className="new-folder-tasks__empty-tasks">
                     <h4 className="new-folder-tasks__empty-title">No tasks</h4>
                     <a href="#" data-burger-link="2" className="new-folder-tasks__empty-add-link">
                         <img src={addIcon} alt="" className="new-folder-tasks__empty-add-icon" />
                         Add new task
                     </a>
-                </div>
+                </div> */}
             </section>
             <section className="all-tasks-list">
                 <ul className="all-tasks-list__header">
