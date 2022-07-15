@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import addIcon from "../../files/img/all-icons/add.svg";
 import mkIcon from "../../files/img/all-icons/mk.svg";
@@ -34,7 +35,14 @@ export default function TaskManager(props) {
                 <>
                     {
                         array.map((object, index) => (
-                            <a key={index} href="#" className="task-manager-folder">
+                            <Link
+                                key={index}
+                                to={{
+                                    pathname: "/Dashboard/New-folder",
+                                    search: `?id=${object.id}&name=${object.name}&color=${object.color}&icon=${object.icon}&type=${object.type}`
+                                }}
+                                className="task-manager-folder"
+                            >
                                 <div style={{ "backgroundColor": object.color }} className="task-manager-folder__title-top">
                                     <div className="task-manager-folder__title-icon">
                                         <svg style={{ "width": "44px", "height": "44px" }}>
@@ -66,7 +74,7 @@ export default function TaskManager(props) {
                                         <p className="task-manager-folder__feedback-length red">2 alert</p>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         ))
                     }
                 </>

@@ -1,32 +1,60 @@
-import { render } from "@testing-library/react";
 import React from "react";
 
-import paintIcon from "../../files/img/folder-icons/ic_paint-brush.svg";
+import { useLocation } from "react-router-dom";
+
 import addIcon from "../../files/img/all-icons/add.svg";
 import mkIcon from "../../files/img/all-icons/mk.svg";
 import plusIcon from "../../files/img/all-icons/plus.svg";
+import iconStar from "../../files/img/icon-star.svg";
+import elipsesMenuIcon from "../../files/img/all-icons/elipses-menu.svg";
+import renameIcon from "../../files/img/more-icons/ic_rename.svg";
+import moveIcon from "../../files/img/more-icons/ic_move.svg";
+import docIcon from "../../files/img/more-icons/ic_doc.svg";
+import contactsIcon from "../../files/img/more-icons/ic_contacts.svg";
+import archiveIcon from "../../files/img/more-icons/ic_archive.svg";
+import exit from "../../files/img/exit.svg";
+import searchIcon from "../../files/img/tasks-icons/ic_search.svg";
+import userIcon from "../../files/img/tasks-icons/ic_user.svg";
+import statusIcon from "../../files/img/tasks-icons/ic_status.svg";
+import priorityIcon from "../../files/img/tasks-icons/ic_priority.svg";
+import companyIcon from "../../files/img/tasks-icons/ic_company.svg";
+import dateIcon from "../../files/img/tasks-icons/ic_date.svg";
+import avaImage from "../../files/img/task-list-icons/ava.png";
+import subTaskIcon from "../../files/img/task-list-icons/ic_subtask.svg";
+import attachIcon from "../../files/img/task-list-icons/ic_attach.svg";
+import messageIcon from "../../files/img/task-list-icons/ic_message.svg";
+import moreIcon from "../../files/img/task-list-icons/ic_more.svg";
 
-export default function NewFolder() {
+export default function NewFolder(props) {
+
+    const location = useLocation();
+    const arrayData = {};
+
+    location.search.split("?").pop().split("&").forEach(element => {
+        let [key, value] = element.split("=");
+        arrayData[`${key}`] = value;
+    })
+
     return (
         <>
             <div className="bread-crumbs">
                 <a href="#" className="bread-crumbs__link-back">Task manager</a>
                 <span className="bread-crumbs__slesh"> / </span>
-                <p className="bread-crumbs__current-page">New folder</p>
+                <p className="bread-crumbs__current-page">{arrayData.name.split("%20").join(" ")}</p>
             </div>
 
             <div className="new-folder__header">
                 <div className="new-folder__left">
-                    <div className="new-folder__folder-icon">
+                    <div style={{ "backgroundColor": arrayData.color }} className="new-folder__folder-icon">
                         <svg style={{ "width": "24px", "height": "24px" }}>
-                            <use xlinkHref={`${paintIcon}#paint`}></use>
+                            <use xlinkHref={`${arrayData.icon.split(",")[0]}#${arrayData.icon.split(",")[1]}`}></use>
                         </svg>
                     </div>
                     <div className="task-manager-folder__title-content">
                         <h3 className="new-folder__title-folder-name">
-                            New folder
+                            {arrayData.name.split("%20").join(" ")}
                             <a href="#" className="new-folder__title-folder-star">
-                                <img src="@img/icon-star.svg" alt="" className="new-folder__title-folder-icon" />
+                                <img src={iconStar} alt="" className="new-folder__title-folder-icon" />
                             </a>
                         </h3>
                         <div className="task-manager-folder__title-folder-content-bottom">
@@ -59,42 +87,42 @@ export default function NewFolder() {
                     <div className="empty-state-dashboard__more-menu">
 
                         <a data-add-more="11" href="#" className="empty-state-dashboard__button-link more">
-                            <img src="@img/all-icons/elipses-menu.svg" alt=""
+                            <img src={elipsesMenuIcon} alt=""
                                 className="empty-state-dashboard__button-link-icon" />
                         </a>
 
                         <ul data-add-more="11" className="empty-state-dashboard__menu-list">
                             <li className="empty-state-dashboard__menu-item">
                                 <a data-burger-link="1" href="#" className="empty-state-dashboard__menu-link">
-                                    <img src="@img/more-icons/ic_rename.svg" alt=""
+                                    <img src={renameIcon} alt=""
                                         className="empty-state-dashboard__menu-icon" />
                                     Edit
                                 </a>
                             </li>
                             <li className="empty-state-dashboard__menu-item">
                                 <a href="#" className="empty-state-dashboard__menu-link">
-                                    <img src="@img/more-icons/ic_move.svg" alt=""
+                                    <img src={moveIcon} alt=""
                                         className="empty-state-dashboard__menu-icon" />
                                     Move to..
                                 </a>
                             </li>
                             <li className="empty-state-dashboard__menu-item">
                                 <a data-burger-link="8" href="#" className="empty-state-dashboard__menu-link">
-                                    <img src="@img/more-icons/ic_doc.svg" alt=""
+                                    <img src={docIcon} alt=""
                                         className="empty-state-dashboard__menu-icon" />
                                     Saved templates
                                 </a>
                             </li>
                             <li className="empty-state-dashboard__menu-item">
                                 <a data-burger-link="7" href="#" className="empty-state-dashboard__menu-link">
-                                    <img src="@img/more-icons/ic_contacts.svg" alt=""
+                                    <img src={contactsIcon} alt=""
                                         className="empty-state-dashboard__menu-icon" />
                                     Accesses permissions
                                 </a>
                             </li>
                             <li className="empty-state-dashboard__menu-item">
                                 <a data-notification-link="1" href="#" className="empty-state-dashboard__menu-link">
-                                    <img src="@img/more-icons/ic_archive.svg" alt=""
+                                    <img src={archiveIcon} alt=""
                                         className="empty-state-dashboard__menu-icon" />
                                     Move to archive
                                 </a>
@@ -107,7 +135,7 @@ export default function NewFolder() {
             <div className="archive-notification" data-notification="1">
                 Task archived
                 <a data-notification-close="1" href="#" className="archive-notification__close">
-                    <img src="@img/exit.svg" alt="" className="archive-notification__close-icon" />
+                    <img src={exit} alt="" className="archive-notification__close-icon" />
                 </a>
             </div>
 
@@ -116,33 +144,33 @@ export default function NewFolder() {
                 <div className="new-folder-tasks__tasks-menu">
                     <form action="#" className="new-folder-tasks__search">
                         <button className="new-folder-tasks__submit">
-                            <img src="@img/tasks-icons/ic_search.svg" alt="" className="new-folder-tasks__submit-icon" />
+                            <img src={searchIcon} alt="" className="new-folder-tasks__submit-icon" />
                         </button>
                         <input type="search" className="new-folder-tasks__search-input" placeholder="Search task or tag" />
                     </form>
                     <ul className="new-folder-tasks__menu-list">
                         <li className="new-folder-tasks__menu-item"><a href="#" className="new-folder-tasks__menu-link btn-bottom-small">
-                            <img src="@img/tasks-icons/ic_user.svg" alt="" className="new-folder-tasks__menu-link-icon" />
+                            <img src={userIcon} alt="" className="new-folder-tasks__menu-link-icon" />
                             Assigned to
                         </a></li>
                         <li className="new-folder-tasks__menu-item"><a href="#" className="new-folder-tasks__menu-link btn-bottom-small">
-                            <img src="@img/tasks-icons/ic_status.svg" alt="" className="new-folder-tasks__menu-link-icon" />
+                            <img src={statusIcon} alt="" className="new-folder-tasks__menu-link-icon" />
                             Status
                         </a></li>
                         <li className="new-folder-tasks__menu-item"><a href="#" className="new-folder-tasks__menu-link btn-bottom-small">
-                            <img src="@img/tasks-icons/ic_priority.svg" alt="" className="new-folder-tasks__menu-link-icon" />
+                            <img src={priorityIcon} alt="" className="new-folder-tasks__menu-link-icon" />
                             Priority
                         </a></li>
                         <li className="new-folder-tasks__menu-item"><a href="#" className="new-folder-tasks__menu-link btn-bottom-small">
-                            <img src="@img/tasks-icons/ic_company.svg" alt="" className="new-folder-tasks__menu-link-icon" />
+                            <img src={companyIcon} alt="" className="new-folder-tasks__menu-link-icon" />
                             Department
                         </a></li>
                         <li className="new-folder-tasks__menu-item"><a href="#" className="new-folder-tasks__menu-link btn-bottom-small">
-                            <img src="@img/tasks-icons/ic_date.svg" alt="" className="new-folder-tasks__menu-link-icon" />
+                            <img src={dateIcon} alt="" className="new-folder-tasks__menu-link-icon" />
                             Due date
                         </a></li>
                         <li className="new-folder-tasks__menu-item"><a data-burger-link="2" href="#" className="new-folder-tasks__menu-link">
-                            <img src="@img/all-icons/add.svg" alt="" className="new-folder-tasks__menu-link-icon" />
+                            <img src={addIcon} alt="" className="new-folder-tasks__menu-link-icon" />
                             New task
                         </a></li>
                     </ul>
@@ -150,7 +178,7 @@ export default function NewFolder() {
                 <div className="new-folder-tasks__empty-tasks">
                     <h4 className="new-folder-tasks__empty-title">No tasks</h4>
                     <a href="#" data-burger-link="2" className="new-folder-tasks__empty-add-link">
-                        <img src="@img/all-icons/add.svg" alt="" className="new-folder-tasks__empty-add-icon" />
+                        <img src={addIcon} alt="" className="new-folder-tasks__empty-add-icon" />
                         Add new task
                     </a>
                 </div>
@@ -167,7 +195,7 @@ export default function NewFolder() {
                     <li className="all-tasks-list__task-item">
                         <a data-burger-link="6" href="#" className="all-tasks-list__task-content">
                             <div className="all-tasks-list__task-media">
-                                <img src="@img/task-list-icons/ava.png" alt="" className="all-tasks-list__task-image" />
+                                <img src={avaImage} alt="" className="all-tasks-list__task-image" />
                             </div>
                             <div className="all-tasks-list__task-info">
                                 <h4 className="all-tasks-list__task-name">
@@ -175,7 +203,7 @@ export default function NewFolder() {
                                 </h4>
                                 <div className="all-tasks-list__task-info-bottom">
                                     <p className="all-tasks-list__task-length">5</p>
-                                    <img src="@img/task-list-icons/ic_subtask.svg" alt="" className="all-tasks-list__task-icon" />
+                                    <img src={subTaskIcon} alt="" className="all-tasks-list__task-icon" />
                                     <div className="all-tasks-list__task-line">
                                         <span className="all-tasks-list__task-line-left"></span>
                                         <span className="all-tasks-list__task-line-right"></span>
@@ -198,10 +226,10 @@ export default function NewFolder() {
                         </div>
                         <div className="all-tasks-list__task-asign">
                             <a href="#" className="all-tasks-list__task-ava">
-                                <img src="@img/task-list-icons/ava.png" alt="" className="all-tasks-list__task-ava-image" />
+                                <img src={avaImage} alt="" className="all-tasks-list__task-ava-image" />
                             </a>
                             <a href="#" className="all-tasks-list__task-ava">
-                                <img src="@img/task-list-icons/ava.png" alt="" className="all-tasks-list__task-ava-image" />
+                                <img src={avaImage} alt="" className="all-tasks-list__task-ava-image" />
                             </a>
                             <a href="#" className="all-tasks-list__task-ava">
                                 +3
@@ -209,45 +237,45 @@ export default function NewFolder() {
                         </div>
                         <div className="all-tasks-list__task-links">
                             <a href="#" className="all-tasks-list__task-link">
-                                <img src="@img/task-list-icons/ic_attach.svg" alt="" className="all-tasks-list__task-link-icon" />
+                                <img src={attachIcon} alt="" className="all-tasks-list__task-link-icon" />
                                 <span className="all-tasks-list__task-link-length"></span>
                             </a>
                             <a href="#" className="all-tasks-list__task-link">
-                                <img src="@img/task-list-icons/ic_message.svg" alt="" className="all-tasks-list__task-link-icon" />
+                                <img src={messageIcon} alt="" className="all-tasks-list__task-link-icon" />
                             </a>
                             <div className="all-tasks-list__task-more-menu">
                                 <a data-add-more="13" href="#" className="all-tasks-list__task-link more">
-                                    <img src="@img/task-list-icons/ic_more.svg" alt="" className="all-tasks-list__task-link-icon" />
+                                    <img src={moreIcon} alt="Icon" className="all-tasks-list__task-link-icon" />
                                 </a>
 
                                 <ul data-add-more="13" className="all-tasks-list__more-menu">
                                     <li className="all-tasks-list__more-menu-item">
                                         <a data-burger-link="3" href="#" className="all-tasks-list__more-menu-link">
-                                            <img src="@img/more-icons/ic_rename.svg" alt="" className="all-tasks-list__more-menu-image" />
+                                            <img src={renameIcon} alt="" className="all-tasks-list__more-menu-image" />
                                             Edit
                                         </a>
                                     </li>
                                     <li className="all-tasks-list__more-menu-item">
                                         <a href="#" className="all-tasks-list__more-menu-link">
-                                            <img src="@img/more-icons/ic_move.svg" alt="" className="all-tasks-list__more-menu-image" />
+                                            <img src={moveIcon} alt="" className="all-tasks-list__more-menu-image" />
                                             Move to..
                                         </a>
                                     </li>
                                     <li className="all-tasks-list__more-menu-item">
                                         <a data-burger-link="8" href="#" className="all-tasks-list__more-menu-link">
-                                            <img src="@img/more-icons/ic_doc.svg" alt="" className="all-tasks-list__more-menu-image" />
+                                            <img src={docIcon} alt="" className="all-tasks-list__more-menu-image" />
                                             Save as template
                                         </a>
                                     </li>
                                     <li className="all-tasks-list__more-menu-item">
                                         <a data-burger-link="7" href="#" className="all-tasks-list__more-menu-link">
-                                            <img src="@img/more-icons/ic_contacts.svg" alt="" className="all-tasks-list__more-menu-image" />
+                                            <img src={contactsIcon} alt="" className="all-tasks-list__more-menu-image" />
                                             Accesses permissions
                                         </a>
                                     </li>
                                     <li className="all-tasks-list__more-menu-item">
                                         <a data-notification-link="1" href="#" className="all-tasks-list__more-menu-link">
-                                            <img src="@img/more-icons/ic_archive.svg" alt="" className="all-tasks-list__more-menu-image" />
+                                            <img src={archiveIcon} alt="" className="all-tasks-list__more-menu-image" />
                                             Move to archive
                                         </a>
                                     </li>

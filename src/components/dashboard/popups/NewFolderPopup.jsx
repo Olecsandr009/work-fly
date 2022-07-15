@@ -151,6 +151,7 @@ export default function NewFolderPopup(props) {
         e.preventDefault();
 
         props.addFolderFunction({
+            "id": Date.now(),
             "name": newFolderInputValue,
             "color": newFolderColorState,
             "icon": newFolderIconState,

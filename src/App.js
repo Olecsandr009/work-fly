@@ -24,6 +24,8 @@ export default function App(props) {
 
     let [popupDataState, setPopupDataState] = useState(0);
 
+    let [newFolderId, setNewFolderId] = useState("");
+
     function exitAllPopups(e) {
         if (e) {
             e.preventDefault()
@@ -103,10 +105,14 @@ export default function App(props) {
                                     setPopupDataState={setPopupDataState}
                                     exitAllPopups={exitAllPopups}
                                     allFoldersArray={props.allFoldersArray}
+                                    setNewFolderId={setNewFolderId}
                                 />
                             }
                         />
-                        <Route path="/Dashboard/New-folder" element={<NewFolder />} />
+                        <Route
+                            path="/Dashboard/New-folder"
+                            element={<NewFolder allTasksArray={props.allTasksArray} />}
+                        />
                     </Route>
                 </Routes>
             </Router >
