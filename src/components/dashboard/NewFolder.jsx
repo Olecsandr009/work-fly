@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useLocation } from "react-router-dom";
 
@@ -34,6 +34,26 @@ export default function NewFolder(props) {
         let [key, value] = element.split("=");
         arrayData[`${key}`] = value;
     })
+
+    function openPopupFunction(e) {
+
+        if (arrayData.type === "custom") {
+            e.preventDefault();
+            props.exitAllPopups();
+
+            const burgerLinkNum = e.target.dataset.burgerLink;
+
+            props.setPopupDataState(burgerLinkNum);
+
+        } else {
+
+            e.preventDefault();
+            props.exitAllPopups();
+            props.setPopupDataState("3");
+
+        }
+
+    }
 
     return (
         <>
@@ -169,13 +189,15 @@ export default function NewFolder(props) {
                             <img src={dateIcon} alt="" className="new-folder-tasks__menu-link-icon" />
                             Due date
                         </a></li>
-                        <li className="new-folder-tasks__menu-item"><a data-burger-link="2" href="#" className="new-folder-tasks__menu-link">
-                            <img src={addIcon} alt="" className="new-folder-tasks__menu-link-icon" />
-                            New task
-                        </a></li>
+                        <li className="new-folder-tasks__menu-item">
+                            <a data-burger-link="2" onClick={openPopupFunction} href="#" className="new-folder-tasks__menu-link">
+                                <img src={addIcon} alt="" className="new-folder-tasks__menu-link-icon" />
+                                New task
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                {/* <div className="new-folder-tasks__empty-tasks">
+                {/* <div className="new-folder-tasks__empty-tasks">openPopupFunction
                     <h4 className="new-folder-tasks__empty-title">No tasks</h4>
                     <a href="#" data-burger-link="2" className="new-folder-tasks__empty-add-link">
                         <img src={addIcon} alt="" className="new-folder-tasks__empty-add-icon" />

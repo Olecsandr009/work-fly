@@ -14,7 +14,6 @@ import moveIcon from "../../files/img/more-icons/ic_move.svg";
 import docIcon from "../../files/img/more-icons/ic_doc.svg";
 import contactsIcon from "../../files/img/more-icons/ic_contacts.svg";
 import archiveIcon from "../../files/img/more-icons/ic_archive.svg";
-import add from "../../files/img/all-icons/add.svg";
 
 export default function TaskManager(props) {
 

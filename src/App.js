@@ -24,6 +24,12 @@ export default function App(props) {
 
     let [popupDataState, setPopupDataState] = useState(0);
 
+    let [currentObjectTaskState, setCurrentObjectTaskState] = useState({
+        types: "",
+    });
+
+    console.log(currentObjectTaskState);
+
     function exitAllPopups(e) {
         if (e) {
             e.preventDefault()
@@ -74,6 +80,8 @@ export default function App(props) {
         }
     })
 
+    let newTaskSetting = [];
+
     return (
 
         <>
@@ -92,6 +100,10 @@ export default function App(props) {
                             popupDataState={popupDataState}
                             setPopupDataState={setPopupDataState}
                             addFolderFunction={props.addFolderFunction}
+                            newTaskSetting={newTaskSetting}
+                            addTaskFunction={props.addTaskFunction}
+                            setCurrentObjectTaskState={setCurrentObjectTaskState}
+                            currentObjectTaskState={currentObjectTaskState}
                         />
                     } path="/Dashboard">
                         <Route path="/Dashboard/Empty-state" element={<EmptyDashboard />} />
@@ -108,7 +120,14 @@ export default function App(props) {
                         />
                         <Route
                             path="/Dashboard/New-folder"
-                            element={<NewFolder allTasksArray={props.allTasksArray} />}
+                            element={
+                                <NewFolder
+                                    setPopupDataState={setPopupDataState}
+                                    exitAllPopups={exitAllPopups}
+                                    allTasksArray={props.allTasksArray}
+                                    newTaskSetting={newTaskSetting}
+                                />
+                            }
                         />
                     </Route>
                 </Routes>

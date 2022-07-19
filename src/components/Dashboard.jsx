@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import HeaderDashboard from "./headers/HeaderDashboard";
@@ -14,42 +14,62 @@ import PopupAccesses from "./dashboard/popups/PopupAccesses";
 import PopupTemplates from "./dashboard/popups/PopupTemplates";
 import ViewTaskInfo from "./dashboard/popups/ViewTaskInfo";
 
-export default class Dashboard extends React.Component {
+export default function Dashboard(props) {
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <>
-                <div className="grid-wrapper">
-                    <SaitBar />
-                    <div className="wrapper dashboard">
-                        <HeaderDashboard />
-                        <div className="main dashboard">
-                            <Outlet />
-                        </div>
+    return (
+        <>
+            <div className="grid-wrapper">
+                <SaitBar />
+                <div className="wrapper dashboard">
+                    <HeaderDashboard />
+                    <div className="main dashboard">
+                        <Outlet />
                     </div>
-                    <NewFolderPopup
-                        exitAllPopups={this.props.exitAllPopups}
-                        popupDataState={this.props.popupDataState}
-                        setPopupDataState={this.props.setPopupDataState}
-                        allFoldersArray={this.props.allFoldersArray}
-                        addFolderFunction={this.props.addFolderFunction}
-                    />
-
-                    {/* New Task Popups */}
-
-                    <NewTaskPopupTypes />
-                    <NewTaskPopupSetting />
-                    <NewTaskPopupNotification />
-                    <NewSubTaskPopupSetting />
-                    <PopupAccesses />
-                    <PopupTemplates />
-                    <ViewTaskInfo />
                 </div>
-            </>
-        )
-    }
+                <NewFolderPopup
+                    exitAllPopups={props.exitAllPopups}
+                    popupDataState={props.popupDataState}
+                    setPopupDataState={props.setPopupDataState}
+                    allFoldersArray={props.allFoldersArray}
+                    addFolderFunction={props.addFolderFunction}
+                />
+
+                {/* New Task Popups */}
+
+                <NewTaskPopupTypes
+                    popupDataState={props.popupDataState}
+                    exitAllPopups={props.exitAllPopups}
+                    setPopupDataState={props.setPopupDataState}
+                    setCurrentObjectTaskState={props.setCurrentObjectTaskState}
+                />
+                <NewTaskPopupSetting
+                    popupDataState={props.popupDataState}
+                    exitAllPopups={props.exitAllPopups}
+                    setPopupDataState={props.setPopupDataState}
+                    newTaskSetting={props.newTaskSetting}
+                    setCurrentObjectTaskState={props.setCurrentObjectTaskState}
+                    currentObjectTaskState={props.currentObjectTaskState}
+                />
+                <NewTaskPopupNotification
+                    popupDataState={props.popupDataState}
+                    exitAllPopups={props.exitAllPopups}
+                    setPopupDataState={props.setPopupDataState}
+                    setCurrentObjectTaskState={props.setCurrentObjectTaskState}
+                />
+                <NewSubTaskPopupSetting
+                    popupDataState={props.popupDataState}
+                    setCurrentObjectTaskState={props.setCurrentObjectTaskState}
+                />
+                <PopupAccesses
+                    popupDataState={props.popupDataState}
+                />
+                <PopupTemplates
+                    popupDataState={props.popupDataState}
+                />
+                <ViewTaskInfo
+                    popupDataState={props.popupDataState}
+                />
+            </div>
+        </>
+    )
 }

@@ -16,3 +16,9 @@ export function addFolderFunction(object) {
 
     rerenderDOM();
 }
+
+export function addTaskFunction(object) {
+    allTasksArray.push(object);
+
+    rerenderDOM();
+}

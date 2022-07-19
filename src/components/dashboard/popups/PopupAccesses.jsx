@@ -1,4 +1,18 @@
-export default function PopupAccesses() {
+import { useEffect } from "react";
+
+export default function PopupAccesses(props) {
+
+    useEffect(() => {
+        if (props.popupDataState) {
+            const burger = document.querySelectorAll("[data-burger]");
+            for (let i = 0; i < burger.length; i++) {
+                if (burger[i].dataset.burger === props.popupDataState) {
+                    burger[i].classList.add("open");
+                }
+            }
+        }
+    })
+
     return (
         <form data-burger="7" action="#" className="more-item-burger">
             <div className="more-item-burger__content-top">

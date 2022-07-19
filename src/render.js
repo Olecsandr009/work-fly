@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
-import { addFolderFunction, allFoldersArray, allTasksArray } from "./addFolderFunc";
+import { addFolderFunction, allFoldersArray, allTasksArray, addTaskFunction } from "./addFolderFunc";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,6 +13,7 @@ export default function rerenderDOM() {
             allFoldersArray={allFoldersArray}
             addFolderFunction={addFolderFunction}
             allTasksArray={allTasksArray}
+            addTaskFunction={addTaskFunction}
         />
     );
 

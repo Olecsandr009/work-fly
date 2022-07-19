@@ -1,4 +1,18 @@
-export default function ViewTaskInfo() {
+import { useEffect } from "react";
+
+export default function ViewTaskInfo(props) {
+
+    useEffect(() => {
+        if (props.popupDataState) {
+            const burger = document.querySelectorAll("[data-burger]");
+            for (let i = 0; i < burger.length; i++) {
+                if (burger[i].dataset.burger === props.popupDataState) {
+                    burger[i].classList.add("open");
+                }
+            }
+        }
+    })
+
     return (
         <form data-burger="6" action="#" className="view-task-info no-admin task-close">
             <div className="view-task-info__content-top">
@@ -61,7 +75,7 @@ export default function ViewTaskInfo() {
                 <div className="view-task-info__user-info">
                     <div className="view-task-info__block-info">
                         <div className="view-task-info__info-media folder">
-                            <svg style="height:20px;width:20px">
+                            <svg style={{ "height": "20px", "width": "20px" }}>
                                 <use xlinkHref="@img/folder-icons/ic_home.svg#home"></use>
                             </svg>
                         </div>
@@ -183,7 +197,7 @@ export default function ViewTaskInfo() {
                 <ul className="view-task-info__sub-tasks-list">
                     <li className="view-task-info__sub-task-item">
                         <div className="view-task-info__sub-task-content-top">
-                            <label data-check-box-label="2" for="view-task-checkbox" className="view-task-info__sub-task-checkbox">
+                            <label data-check-box-label="2" htmlFor="view-task-checkbox" className="view-task-info__sub-task-checkbox">
                                 <input data-check-box-input="2" id="view-task-checkbox" type="checkbox" className="view-task-info__sub-task-checkbox-input" />
                             </label>
                             <p className="view-task-info__sub-task-name">
@@ -226,17 +240,17 @@ export default function ViewTaskInfo() {
                     Attachments
                 </h4>
                 <div data-form-radio-group="6" className="view-task-info__file-list">
-                    <label data-label-radio="6" for="file-info-area1" className="view-task-info__file-item file">
+                    <label data-label-radio="6" htmlFor="file-info-area1" className="view-task-info__file-item file">
                         <input type="file" name="view-task-file" id="file-info-area1" className="view-task-info__drag-and-drop" />
-                        <input data-input-radio="6" type="radio" name="view-task-file" id="file-info-area1" checked className="view-task-info__drag-and-drop checked" />
+                        <input data-input-radio="6" type="radio" name="view-task-file" id="file-info-area1" defaultChecked className="view-task-info__drag-and-drop checked" />
                         <img src="@img/view-task-icons/ic_add3.svg" alt="" className="view-task-info__drag-and-drop-icon" />
                         Upload file
                     </label>
-                    <label data-label-radio="6" for="file-info-area2" className="view-task-info__file-item">
+                    <label data-label-radio="6" htmlFor="file-info-area2" className="view-task-info__file-item">
                         <input data-input-radio="6" type="radio" name="view-task-file" id="file-info-area2" className="view-task-info__drag-and-drop" />
                         <img src="@img/view-task-icons/file.png" alt="" className="view-task-info__file-image" />
                     </label>
-                    <label data-label-radio="6" for="file-info-area3" className="view-task-info__file-item">
+                    <label data-label-radio="6" htmlFor="file-info-area3" className="view-task-info__file-item">
                         <input data-input-radio="6" type="radio" name="view-task-file" id="file-info-area3" className="view-task-info__drag-and-drop" />
                         <img src="@img/view-task-icons/file.png" alt="" className="view-task-info__file-image" />
                     </label>

@@ -1,4 +1,17 @@
-export default function NewSubTaskPopupSetting() {
+import { useEffect } from "react";
+
+export default function NewSubTaskPopupSetting(props) {
+
+    useEffect(() => {
+        if (props.popupDataState) {
+            const burger = document.querySelectorAll("[data-burger]");
+            for (let i = 0; i < burger.length; i++) {
+                if (burger[i].dataset.burger === props.popupDataState) {
+                    burger[i].classList.add("open");
+                }
+            }
+        }
+    })
 
     return (
         <form data-burger="4" action="#" className="new-task-setting">
@@ -70,7 +83,7 @@ export default function NewSubTaskPopupSetting() {
                     <ul data-add-more="1" className="new-task-setting__add-more-window">
                         <li className="new-task-setting__add-more-window-item">
                             <a href="#" className="new-task-setting__add-more-window-link">
-                                <svg style="height:20px;width:20px;">
+                                <svg style={{ "height": "20px", "width": "20px" }}>
                                     <use xlinkHref="@img/add-more-icons/ic_company.svg#company"></use>
                                 </svg>
                                 Departament
@@ -78,7 +91,7 @@ export default function NewSubTaskPopupSetting() {
                         </li>
                         <li className="new-task-setting__add-more-window-item">
                             <a href="#" className="new-task-setting__add-more-window-link">
-                                <svg style="height:20px;width:20px;">
+                                <svg style={{ "height": "20px", "width": "20px" }}>
                                     <use xlinkHref="@img/add-more-icons/ic_tag.svg#tag"></use>
                                 </svg>
                                 Tag
@@ -86,7 +99,7 @@ export default function NewSubTaskPopupSetting() {
                         </li>
                         <li className="new-task-setting__add-more-window-item">
                             <a href="#" className="new-task-setting__add-more-window-link">
-                                <svg style="height:20px;width:20px;">
+                                <svg style={{ "height": "20px", "width": "20px" }}>
                                     <use xlinkHref="@img/add-more-icons/ic_location.svg#location"></use>
                                 </svg>
                                 Location
@@ -94,7 +107,7 @@ export default function NewSubTaskPopupSetting() {
                         </li>
                         <li className="new-task-setting__add-more-window-item">
                             <a href="#" className="new-task-setting__add-more-window-link">
-                                <svg style="height:20px;width:20px;">
+                                <svg style={{ "height": "20px", "width": "20px" }}>
                                     <use xlinkHref="@img/add-more-icons/ic_attach.svg#attach"></use>
                                 </svg>
                                 Attachment
@@ -102,7 +115,7 @@ export default function NewSubTaskPopupSetting() {
                         </li>
                         <li className="new-task-setting__add-more-window-item">
                             <a href="#" className="new-task-setting__add-more-window-link">
-                                <svg style="height:20px;width:20px;">
+                                <svg style={{ "height": "20px", "width": "20px" }}>
                                     <use xlinkHref="@img/add-more-icons/ic_reminder.svg#reminder"></use>
                                 </svg>
                                 Reminder
@@ -110,7 +123,7 @@ export default function NewSubTaskPopupSetting() {
                         </li>
                         <li className="new-task-setting__add-more-window-item">
                             <a href="#" className="new-task-setting__add-more-window-link">
-                                <svg style="height:20px;width:20px;">
+                                <svg style={{ "height": "20px", "width": "20px" }}>
                                     <use xlinkHref="@img/add-more-icons/ic_repeat.svg#repeat"></use>
                                 </svg>
                                 Repeat task
@@ -132,7 +145,7 @@ export default function NewSubTaskPopupSetting() {
                 </p>
                 <div className="new-task-setting__drop-area">
                     <input type="file" id="drop-input" className="new-task-setting__drop-input" />
-                    <label for="drop-input" className="new-task-setting__drop-label">
+                    <label htmlFor="drop-input" className="new-task-setting__drop-label">
                         <img src="@img/task-setting-icons/ic_add2.svg" alt="" className="new-task-setting__drop-icon" />
                         <p className="new-task-setting__drop-text">Upload file</p>
                     </label>
