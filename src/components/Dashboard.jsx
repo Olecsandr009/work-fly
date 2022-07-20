@@ -49,12 +49,17 @@ export default function Dashboard(props) {
                     newTaskSetting={props.newTaskSetting}
                     setCurrentObjectTaskState={props.setCurrentObjectTaskState}
                     currentObjectTaskState={props.currentObjectTaskState}
+                    allFoldersArray={props.allFoldersArray}
+                    currentFolderLocationId={props.currentFolderLocationId}
+                    currentFolderLocationState={props.currentFolderLocationState}
+                    setCurrentFolderLocationState={props.setCurrentFolderLocationState}
                 />
                 <NewTaskPopupNotification
                     popupDataState={props.popupDataState}
                     exitAllPopups={props.exitAllPopups}
                     setPopupDataState={props.setPopupDataState}
                     setCurrentObjectTaskState={props.setCurrentObjectTaskState}
+                    addTaskFunction={props.addTaskFunction}
                 />
                 <NewSubTaskPopupSetting
                     popupDataState={props.popupDataState}

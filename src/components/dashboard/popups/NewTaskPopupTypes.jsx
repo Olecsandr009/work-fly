@@ -39,6 +39,14 @@ export default function NewTaskPopupTypes(props) {
 
         props.setCurrentObjectTaskState({
             types: currentTypeState,
+            status: props.setCurrentObjectTaskState.status,
+            name: props.setCurrentObjectTaskState.name,
+            idFolderLocation: props.setCurrentObjectTaskState.idFolderLocation,
+            asignedTo: props.setCurrentObjectTaskState.asignedTo,
+            dueDate: props.setCurrentObjectTaskState.dueDate,
+            priority: props.setCurrentObjectTaskState.priority,
+            descriptor: props.setCurrentObjectTaskState.descriptor,
+            subTask: props.setCurrentObjectTaskState.subTask
         });
 
     }

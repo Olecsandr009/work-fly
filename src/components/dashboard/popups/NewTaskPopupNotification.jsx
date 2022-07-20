@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import exitIcon from "../../../files/img/arrow-exit.svg";
 import discountIcon from "../../../files/img/new-task-notification/discount.png";
@@ -20,6 +20,35 @@ export default function NewTaskPopupNotification(props) {
         }
     })
 
+    const notificationObject = {
+        "notification-radio1": "SOS",
+        "notification-radio2": "Urgent",
+        "notification-radio3": "Default",
+        "notification-radio4": "Silence",
+    }
+
+    let [notificationState, setNotificationState] = useState(notificationObject["notification-radio3"]);
+
+    function setNotificationFunc(e) {
+        setNotificationState(notificationObject[e.target.id]);
+    }
+
+    function createNewTask(e) {
+        e.preventDefault();
+        props.addTaskFunction({
+            types: props.setCurrentObjectTaskState.types,
+            status: props.setCurrentObjectTaskState.status,
+            name: props.setCurrentObjectTaskState.name,
+            idFolderLocation: props.setCurrentObjectTaskState.idFolderLocation,
+            asignedTo: props.setCurrentObjectTaskState.asignedTo,
+            dueDate: props.setCurrentObjectTaskState.dueDate,
+            priority: props.setCurrentObjectTaskState.priority,
+            descriptor: props.setCurrentObjectTaskState.descriptor,
+            subTask: props.setCurrentObjectTaskState.subTask,
+            notification: notificationState
+        })
+    }
+
     return (
 
         <form data-burger="5" action="#" className="new-task-setting notification">
@@ -34,8 +63,8 @@ export default function NewTaskPopupNotification(props) {
                 <h2 className="new-task-setting__burger-name">Notification</h2>
                 <h3 className="new-task-setting__title notification">Choose type</h3>
                 <div data-form-radio-group="5" className="new-task-setting__notification-radio-list">
-                    <label data-label-radio="5" htmlFor="notification-radio1" className="new-task-setting__notification checked">
-                        <input data-input-radio="5" id="notification-radio1" defaultChecked name="notification" type="radio"
+                    <label data-label-radio="5" htmlFor="notification-radio1" className="new-task-setting__notification">
+                        <input onClick={setNotificationFunc} data-input-radio="5" id="notification-radio1" name="notification" type="radio"
                             className="new-task-setting__notification-input" />
                         <div className="new-task-setting__noification-media">
                             <img src={discountIcon} alt=""
@@ -49,7 +78,7 @@ export default function NewTaskPopupNotification(props) {
                         </div>
                     </label>
                     <label data-label-radio="5" htmlFor="notification-radio2" className="new-task-setting__notification">
-                        <input data-input-radio="5" id="notification-radio2" name="notification" type="radio"
+                        <input onClick={setNotificationFunc} data-input-radio="5" id="notification-radio2" name="notification" type="radio"
                             className="new-task-setting__notification-input" />
                         <div className="new-task-setting__noification-media">
                             <img src={discount2Icon} alt=""
@@ -62,8 +91,8 @@ export default function NewTaskPopupNotification(props) {
                             </p>
                         </div>
                     </label>
-                    <label data-label-radio="5" htmlFor="notification-radio3" className="new-task-setting__notification">
-                        <input data-input-radio="5" id="notification-radio3" name="notification" type="radio"
+                    <label data-label-radio="5" htmlFor="notification-radio3" className="new-task-setting__notification checked">
+                        <input onClick={setNotificationFunc} data-input-radio="5" defaultChecked id="notification-radio3" name="notification" type="radio"
                             className="new-task-setting__notification-input" />
                         <div className="new-task-setting__noification-media">
                             <img src={discount3Icon} alt=""
@@ -77,7 +106,7 @@ export default function NewTaskPopupNotification(props) {
                         </div>
                     </label>
                     <label data-label-radio="5" htmlFor="notification-radio4" className="new-task-setting__notification">
-                        <input data-input-radio="5" id="notification-radio4" name="notification" type="radio"
+                        <input onClick={setNotificationFunc} data-input-radio="5" id="notification-radio4" name="notification" type="radio"
                             className="new-task-setting__notification-input" />
                         <div className="new-task-setting__noification-media">
                             <img src={discount4Icon} alt=""
@@ -103,7 +132,7 @@ export default function NewTaskPopupNotification(props) {
                 </div>
             </div>
             <div className="new-task-setting__content-bottom">
-                <button className="new-task-setting__folder-type-submit btn-blue">Create task</button>
+                <button onClick={createNewTask} className="new-task-setting__folder-type-submit btn-blue">Create task</button>
             </div>
         </form>
     )

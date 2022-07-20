@@ -26,9 +26,22 @@ export default function App(props) {
 
     let [currentObjectTaskState, setCurrentObjectTaskState] = useState({
         types: "",
+        status: "open",
+        name: "",
+        idFolderLocation: "",
+        asignedTo: "",
+        dueDate: "",
+        priority: {},
+        descriptor: "",
+        subTask: [],
+        notification: "Default"
     });
 
-    console.log(currentObjectTaskState);
+    let [currentFolderLocationId, setCurrentFolderLocationId] = useState("");
+
+    let [currentFolderLocationState, setCurrentFolderLocationState] = useState({});
+
+    // console.log(currentObjectTaskState);
 
     function exitAllPopups(e) {
         if (e) {
@@ -47,6 +60,8 @@ export default function App(props) {
         for (let i = 0; i < burgerLink.length; i++) {
             burgerLink[i].classList.remove("active");
         }
+
+        setCurrentFolderLocationState({});
     }
 
     window.addEventListener("click", e => {
@@ -104,6 +119,9 @@ export default function App(props) {
                             addTaskFunction={props.addTaskFunction}
                             setCurrentObjectTaskState={setCurrentObjectTaskState}
                             currentObjectTaskState={currentObjectTaskState}
+                            currentFolderLocationId={currentFolderLocationId}
+                            currentFolderLocationState={currentFolderLocationState}
+                            setCurrentFolderLocationState={setCurrentFolderLocationState}
                         />
                     } path="/Dashboard">
                         <Route path="/Dashboard/Empty-state" element={<EmptyDashboard />} />
@@ -126,6 +144,7 @@ export default function App(props) {
                                     exitAllPopups={exitAllPopups}
                                     allTasksArray={props.allTasksArray}
                                     newTaskSetting={newTaskSetting}
+                                    setCurrentFolderLocationId={setCurrentFolderLocationId}
                                 />
                             }
                         />

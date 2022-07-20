@@ -2476,6 +2476,7 @@ body {
   -ms-flex-align: center;
   align-items: center;
   gap: 0.25rem;
+  position: relative;
 }
 
 .new-task-setting__info-media {
@@ -2509,6 +2510,7 @@ body {
 
 .new-task-setting__info-content {
   padding-top: 0.25rem;
+  position: relative;
 }
 
 .new-task-setting__info-name-item {
@@ -2532,6 +2534,60 @@ body {
 
 .new-task-setting__info-name.no-name {
   color: var(--color-gray);
+}
+
+.new-task-setting__info-meny-folders {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 150px;
+  background-color: white;
+  -webkit-box-shadow: 0px 16px 24px rgba(2, 3, 3, 0.03), 0px 6px 30px rgba(2, 3, 3, 0.02), 0px 8px 10px rgba(2, 3, 3, 0.04);
+  box-shadow: 0px 16px 24px rgba(2, 3, 3, 0.03), 0px 6px 30px rgba(2, 3, 3, 0.02), 0px 8px 10px rgba(2, 3, 3, 0.04);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 101;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+
+.new-task-setting__info-meny-folders.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.new-task-setting__info-meny-folders-list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+  width: 100%;
+}
+
+.new-task-setting__info-meny-folders-item {
+  width: 100%;
+}
+
+.new-task-setting__info-meny-folders-folder {
+  display: inline-block;
+  padding: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 114.2857142857%;
+  color: var(--color-rock);
+  width: 100%;
+  transition: background-color .2s;
+}
+
+.new-task-setting__info-meny-folders-folder.current {
+  background-color: var(--color-silver);
+}
+
+.new-task-setting__info-meny-folders-folder:hover {
+  background-color: var(--color-silver);
 }
 
 .new-task-setting__priority {
@@ -2569,6 +2625,10 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.new-task-setting__priority-wrapper {
+  position: relative;
+}
+
 .new-task-setting__priority-link {
   font-weight: 500;
   font-size: 0.9375rem;
@@ -2577,6 +2637,103 @@ body {
   padding: 0.5rem;
   padding-right: 1rem;
   display: block;
+}
+
+.new-task-setting__priority-link-span.highest {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 106.6666666667%;
+  color: var(--color-rock);
+  padding: 4px 8px;
+  border-radius: 100px;
+  background-color: var(--color-wafer);
+}
+
+.new-task-setting__priority-link-span.high {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 106.6666666667%;
+  color: var(--color-rock);
+  padding: 4px 8px;
+  border-radius: 100px;
+  background-color: var(--color-gallery);
+}
+
+.new-task-setting__priority-link-span.medium {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 106.6666666667%;
+  color: var(--color-rock);
+  padding: 4px 8px;
+  border-radius: 100px;
+  background-color: var(--color-merino);
+}
+
+.new-task-setting__priority-link-span.low {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 106.6666666667%;
+  color: var(--color-rock);
+  padding: 4px 8px;
+  border-radius: 100px;
+  background-color: var(--color-cornflowerr);
+}
+
+.new-task-setting__priority-link-span.lowest {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 106.6666666667%;
+  color: var(--color-rock);
+  padding: 4px 8px;
+  border-radius: 100px;
+  background-color: var(--color-botticelli);
+}
+
+.new-task-setting__priority-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 90px;
+  background-color: white;
+  -webkit-box-shadow: 0px 16px 24px rgba(2, 3, 3, 0.03), 0px 6px 30px rgba(2, 3, 3, 0.02), 0px 8px 10px rgba(2, 3, 3, 0.04);
+  box-shadow: 0px 16px 24px rgba(2, 3, 3, 0.03), 0px 6px 30px rgba(2, 3, 3, 0.02), 0px 8px 10px rgba(2, 3, 3, 0.04);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 101;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+
+.new-task-setting__priority-menu.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.new-task-setting__priority-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.new-task-setting__priority-item {
+  padding: 8px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 106.6666666667%;
+  color: var(--color-rock);
+  cursor: pointer;
+}
+
+.new-task-setting__priority-item.active {
+  background-color: var(--color-silver);
+}
+
+.new-task-setting__priority-item:hover {
+  background-color: var(--color-silver);
 }
 
 .new-task-setting__link-add {

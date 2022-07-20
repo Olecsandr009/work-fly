@@ -28,8 +28,16 @@ import addIconTwo from "../../../files/img/all-icons/add.svg";
 import attachIconFor from "../../../files/img/task-setting-icons/ic_attach2.svg";
 import addIconThree from "../../../files/img/task-setting-icons/ic_add2.svg";
 import { useRef } from "react";
+import { useState } from "react";
 
 export default function NewTaskPopupSetting(props) {
+
+    function isEmpty(obj) {
+        for (let key in obj) {
+            return false;
+        }
+        return true;
+    }
 
     useEffect(() => {
         if (props.popupDataState) {
@@ -40,7 +48,46 @@ export default function NewTaskPopupSetting(props) {
                 }
             }
         }
+
+        setCurrentFolderLocationFunc()
     })
+
+    const infoMenyFolders = useRef(null);
+
+    const priorityLink = useRef(null);
+
+    const priorityMenu = useRef(null);
+
+    const infoMenyFoldersLink = useRef(null);
+
+    const priorityLinkSpan = useRef(null);
+
+    const addMoreLink = useRef(null);
+
+    const addMoreMenu = useRef(null);
+
+    let [inputNameState, setInputNameState] = useState("");
+
+    let [priorityState, setPriorityState] = useState("Priority");
+
+    let [taskDescriptionState, setTaskDescriptionState] = useState("");
+
+    function setCurrentFolderLocationFunc() {
+        if (props.allFoldersArray) {
+            for (let i = 0; i < props.allFoldersArray.length; i++) {
+                if (isEmpty(props.currentFolderLocationState)) {
+                    if (String(props.allFoldersArray[i].id) === props.currentFolderLocationId) {
+                        props.setCurrentFolderLocationState(props.allFoldersArray[i])
+                        break
+                    }
+                }
+            }
+        }
+    }
+
+    function onChangeInputName(e) {
+        setInputNameState(e.target.value);
+    }
 
     function openPopupFunction(e) {
 
@@ -53,11 +100,96 @@ export default function NewTaskPopupSetting(props) {
 
         props.setCurrentObjectTaskState({
             types: props.currentObjectTaskState.types,
+            status: props.currentObjectTaskState.status,
+            name: inputNameState,
+            idFolderLocation: "",
+            asignedTo: props.currentObjectTaskState.asignedTo,
+            dueDate: props.currentObjectTaskState.dueDate,
+            priority: priorityState,
+            descriptor: taskDescriptionState,
+            subTask: props.currentObjectTaskState.subTask
         })
 
     }
 
+    function openMenyFolders(e) {
+        e.preventDefault();
+        infoMenyFolders.current.classList.toggle("active");
+    }
+
+    function openAllPriority(e) {
+        e.preventDefault();
+        priorityMenu.current.classList.toggle("active");
+    }
+
+    function openAddMore(e) {
+        e.preventDefault();
+        addMoreMenu.current.classList.toggle("active");
+    }
+
+    function onChangeDescription(e) {
+        setTaskDescriptionState(e.target.value);
+    }
+
     props.newTaskSetting.push(document.querySelectorAll("[data-burger='3'].new-task-setting")[0]);
+
+    window.addEventListener("click", e => {
+        if (infoMenyFolders.current) {
+            if (infoMenyFolders.current.classList.contains("active")) {
+                if (!e.target.closest(".new-task-setting__info-meny-folders") && e.target !== infoMenyFoldersLink.current) {
+                    infoMenyFolders.current.classList.remove("active");
+                }
+            }
+        }
+
+        if (priorityMenu.current) {
+            if (priorityMenu.current.classList.contains("active")) {
+                if (!e.target.closest(".new-task-setting__priority-menu")
+                    && e.target !== priorityLink.current
+                    && e.target !== priorityLinkSpan.current
+                ) {
+                    priorityMenu.current.classList.remove("active");
+                }
+            }
+        }
+
+        if (addMoreMenu.current) {
+            if (addMoreMenu.current.classList.contains("active")) {
+                if (!e.target.closest(".new-task-setting__add-more-window") && e.target !== addMoreLink.current) {
+                    addMoreMenu.current.classList.remove("active");
+                }
+            }
+        }
+    })
+
+    function loopAllFolders(array) {
+        if (array) {
+            return (
+                <>
+                    {
+                        array.map((object, index) => (
+                            <li key={index} className="new-task-setting__info-meny-folders-item">
+                                <a href="#" className="new-task-setting__info-meny-folders-folder">{object.name}</a>
+                            </li>
+                        ))
+                    }
+                </>
+            )
+        }
+    }
+
+    function setPriorityFunc(e) {
+
+        if (priorityLinkSpan.current.className.split(" ").length >= 2) {
+            let classNamePriority = priorityLinkSpan.current.className.split(" ").pop();
+            priorityLinkSpan.current.classList.remove(classNamePriority);
+        }
+
+        setPriorityState(e.target.id);
+
+        priorityLinkSpan.current.classList.add(e.target.id);
+
+    }
 
     return (
         <form data-burger="3" action="#" className="new-task-setting">
@@ -96,17 +228,22 @@ export default function NewTaskPopupSetting(props) {
                 <div className="new-task-setting__bread-crumbs">
                     <p className="new-task-setting__bead-crumbs-current">DFH 24</p>
                 </div>
-                <input type="text" className="new-task-setting__input-task-name" placeholder="Task" />
+                <input type="text" onChange={onChangeInputName} value={inputNameState} className="new-task-setting__input-task-name" placeholder="Task" />
                 <div className="new-task-setting__informations">
                     <div className="new-task-setting__info">
-                        <div className="new-task-setting__info-media folder">
+                        <div style={{ backgroundColor: props.currentFolderLocationState.color }} className="new-task-setting__info-media folder">
                             <svg style={{ "height": "20px", "width": "20px" }}>
-                                <use xlinkHref={`${cupIcon}#cup`}></use>
+                                <use xlinkHref={`${!isEmpty(props.currentFolderLocationState) ? props.currentFolderLocationState.icon[0] : undefined}#${!isEmpty(props.currentFolderLocationState) ? props.currentFolderLocationState.icon[1] : undefined}`}></use>
                             </svg>
                         </div>
                         <div className="new-task-setting__info-content">
                             <h4 className="new-task-setting__info-name-item">Folder location</h4>
-                            <a href="#" className="new-task-setting__info-name btn-bottom-small">Inbox folder</a>
+                            <a ref={infoMenyFoldersLink} onClick={openMenyFolders} href="#" className="new-task-setting__info-name btn-bottom-small">{props.currentFolderLocationState.name}</a>
+                        </div>
+                        <div ref={infoMenyFolders} className="new-task-setting__info-meny-folders">
+                            <ul className="new-task-setting__info-meny-folders-list">
+                                {loopAllFolders(props.allFoldersArray)}
+                            </ul>
                         </div>
                     </div>
                     <div className="new-task-setting__info">
@@ -133,14 +270,37 @@ export default function NewTaskPopupSetting(props) {
                         <img src={priorityIcon} alt="" className="new-task-setting__priority-icon" />
                         Priority
                     </p>
-                    <a href="#" className="new-task-setting__priority-link btn-bottom-small">Priority</a>
+                    <div className="new-task-setting__priority-wrapper">
+                        <a onClick={openAllPriority} ref={priorityLink} href="#" className="new-task-setting__priority-link btn-bottom-small">
+                            <span ref={priorityLinkSpan} className="new-task-setting__priority-link-span">{priorityState}</span>
+                        </a>
+                        <div ref={priorityMenu} className="new-task-setting__priority-menu">
+                            <ul className="new-task-setting__priority-list">
+                                <li onClick={setPriorityFunc} id="highest" className="new-task-setting__priority-item">
+                                    highest
+                                </li>
+                                <li onClick={setPriorityFunc} id="high" className="new-task-setting__priority-item">
+                                    high
+                                </li>
+                                <li onClick={setPriorityFunc} id="medium" className="new-task-setting__priority-item">
+                                    medium
+                                </li>
+                                <li onClick={setPriorityFunc} id="low" className="new-task-setting__priority-item">
+                                    low
+                                </li>
+                                <li onClick={setPriorityFunc} id="lowest" className="new-task-setting__priority-item">
+                                    lowest
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div className="new-task-setting__add-more">
-                    <a data-add-more="2" href="#" className="new-task-setting__link-add">
+                    <a onClick={openAddMore} ref={addMoreLink} href="#" className="new-task-setting__link-add">
                         <img src={addIcon} alt="" className="new-task-setting__link-add-icon" />
                         Add more
                     </a>
-                    <ul data-add-more="2" className="new-task-setting__add-more-window">
+                    <ul ref={addMoreMenu} className="new-task-setting__add-more-window">
                         <li className="new-task-setting__add-more-window-item">
                             <a href="#" className="new-task-setting__add-more-window-link">
                                 <svg style={{ "height": "20px", "width": "20px" }}>
@@ -190,13 +350,74 @@ export default function NewTaskPopupSetting(props) {
                             </a>
                         </li>
                     </ul>
+                    <div className="new-task-setting__add-more-list-more">
+                        {/* <div className="view-task-info__data">
+                            <div className="view-task-info__data-name">
+                                <p className="view-task-info__data-name-text">
+                                    <img src="@img/view-task-icons/ic_company.svg" alt="" className="view-task-info__data-name-image" />
+                                    Department
+                                </p>
+                            </div>
+                            <div className="view-task-info__data-info">
+                                <p className="view-task-info__data-tag yellow">
+                                    Department
+                                    <a href="#" className="view-task-info__data-remove-tag">
+                                        <img src="@img/view-task-icons/ic_close2.svg" alt="" className="view-task-info__data-remove-tag-icon" />
+                                    </a>
+                                </p>
+                                <a href="#" className="view-task-info__data-add-tag">Add new tag</a>
+                            </div>
+                            <div className="view-task-info__data-name">
+                                <p className="view-task-info__data-name-text">
+                                    <img src="@img/view-task-icons/ic_tag.svg" alt="" className="view-task-info__data-name-image" />
+                                    Tags
+                                </p>
+                            </div>
+                            <div className="view-task-info__data-info">
+                                <p className="view-task-info__data-tag green">
+                                    Label
+                                    <a href="#" className="view-task-info__data-remove-tag">
+                                        <img src="@img/view-task-icons/ic_close2.svg" alt="" className="view-task-info__data-remove-tag-icon" />
+                                    </a>
+                                </p>
+                                <a href="#" className="view-task-info__data-add-tag">Add new tag</a>
+                            </div>
+                            <div className="view-task-info__data-name">
+                                <p className="view-task-info__data-name-text">
+                                    <img src="@img/view-task-icons/ic_location.svg" alt="" className="view-task-info__data-name-image" />
+                                    Location
+                                </p>
+                            </div>
+                            <div className="view-task-info__data-info">
+                                <p className="view-task-info__data-text">Mantifiori 46, Tel-Aviv, Israel</p>
+                            </div>
+                            <div className="view-task-info__data-name">
+                                <p className="view-task-info__data-name-text">
+                                    <img src="@img/view-task-icons/ic_reminder.svg" alt="" className="view-task-info__data-name-image" />
+                                    Reminder
+                                </p>
+                            </div>
+                            <div className="view-task-info__data-info">
+                                <p className="view-task-info__data-text">Monday, 15:00</p>
+                            </div>
+                            <div className="view-task-info__data-name">
+                                <p className="view-task-info__data-name-text">
+                                    <img src="@img/view-task-icons/ic_repeat.svg" alt="" className="view-task-info__data-name-image" />
+                                    Repeat
+                                </p>
+                            </div>
+                            <div className="view-task-info__data-info last">
+                                <p className="view-task-info__data-text">Every week</p>
+                            </div>
+                        </div>*/}
+                    </div>
                 </div>
                 <div className="new-task-setting__description">
                     <p className="new-task-setting__title">
                         <img src={leftIcon} alt="" className="new-task-setting__description-icon" />
                         Descriptor
                     </p>
-                    <textarea name="description" id="task-description" className="new-task-setting__textarea"
+                    <textarea onChange={onChangeDescription} value={taskDescriptionState} name="description" id="task-description" className="new-task-setting__textarea"
                         placeholder="Add more details to this task..."></textarea>
                 </div>
                 <div className="new-task-setting__sub-task">
