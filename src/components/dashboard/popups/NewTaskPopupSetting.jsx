@@ -68,6 +68,8 @@ export default function NewTaskPopupSetting(props) {
 
     let [inputNameState, setInputNameState] = useState("");
 
+    let [folderLocationState, setFolderLocationState] = useState(props.currentFolderLocationId)
+
     let [priorityState, setPriorityState] = useState("Priority");
 
     let [taskDescriptionState, setTaskDescriptionState] = useState("");
@@ -99,6 +101,7 @@ export default function NewTaskPopupSetting(props) {
         props.setPopupDataState(burgerLinkNum);
 
         props.setCurrentObjectTaskState({
+            id: props.currentObjectTaskState.id,
             types: props.currentObjectTaskState.types,
             status: props.currentObjectTaskState.status,
             name: inputNameState,
@@ -109,6 +112,8 @@ export default function NewTaskPopupSetting(props) {
             descriptor: taskDescriptionState,
             subTask: props.currentObjectTaskState.subTask
         })
+
+        props.setFolderIdNewTaskState(props.currentFolderLocationId)
 
     }
 

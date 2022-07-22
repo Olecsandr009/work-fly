@@ -22,9 +22,12 @@ import EmptyDashboard from "./components/dashboard/EmptyDashboard";
 
 export default function App(props) {
 
+    // console.log(props.allTasksArray)
+
     let [popupDataState, setPopupDataState] = useState(0);
 
     let [currentObjectTaskState, setCurrentObjectTaskState] = useState({
+        id: "",
         types: "",
         status: "open",
         name: "",
@@ -122,6 +125,7 @@ export default function App(props) {
                             currentFolderLocationId={currentFolderLocationId}
                             currentFolderLocationState={currentFolderLocationState}
                             setCurrentFolderLocationState={setCurrentFolderLocationState}
+                            addIdObject={props.addIdObject}
                         />
                     } path="/Dashboard">
                         <Route path="/Dashboard/Empty-state" element={<EmptyDashboard />} />

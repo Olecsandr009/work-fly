@@ -2,14 +2,11 @@ import rerenderDOM from "./render";
 
 export let allFoldersArray = []
 
-export let allTasksArray = [
-    // {
-    //     "id": "",
-    //     [
-    //         {}
-    //     ]
-    // }
-]
+export let allTasksArray = {
+    // folderId: [
+    //              {}
+    // ]
+}
 
 export function addFolderFunction(object) {
     allFoldersArray.push(object);
@@ -17,8 +14,12 @@ export function addFolderFunction(object) {
     rerenderDOM();
 }
 
-export function addTaskFunction(object) {
-    allTasksArray.push(object);
+export function addIdObject(folderId) {
+    allTasksArray[folderId] = [];
 
-    rerenderDOM();
+    // rerenderDOM();
+}
+
+export function addTaskFunction(folderId, object) {
+    allTasksArray[folderId].push(object);
 }

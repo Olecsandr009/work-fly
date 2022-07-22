@@ -38,6 +38,7 @@ export default function NewTaskPopupTypes(props) {
         props.setPopupDataState(burgerLinkNum);
 
         props.setCurrentObjectTaskState({
+            id: props.setCurrentObjectTaskState.id,
             types: currentTypeState,
             status: props.setCurrentObjectTaskState.status,
             name: props.setCurrentObjectTaskState.name,

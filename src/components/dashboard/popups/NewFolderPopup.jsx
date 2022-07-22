@@ -150,14 +150,18 @@ export default function NewFolderPopup(props) {
     function newFolderButtonClick(e) {
         e.preventDefault();
 
+        const createIdCurrentFolder = Date.now();
+
         props.addFolderFunction({
-            "id": Date.now(),
+            "id": createIdCurrentFolder,
             "name": newFolderInputValue,
             "color": newFolderColorState,
             "icon": newFolderIconState,
             "type": newFolderTypeState,
             "author": "",
         })
+
+        props.addIdObject(createIdCurrentFolder)
     }
 
     return (

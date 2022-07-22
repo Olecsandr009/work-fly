@@ -16,6 +16,8 @@ import ViewTaskInfo from "./dashboard/popups/ViewTaskInfo";
 
 export default function Dashboard(props) {
 
+    let [folderIdNewTaskState, setFolderIdNewTaskState] = useState("")
+
     return (
         <>
             <div className="grid-wrapper">
@@ -32,6 +34,8 @@ export default function Dashboard(props) {
                     setPopupDataState={props.setPopupDataState}
                     allFoldersArray={props.allFoldersArray}
                     addFolderFunction={props.addFolderFunction}
+                    addTaskFunction={props.addTaskFunction}
+                    addIdObject={props.addIdObject}
                 />
 
                 {/* New Task Popups */}
@@ -53,13 +57,18 @@ export default function Dashboard(props) {
                     currentFolderLocationId={props.currentFolderLocationId}
                     currentFolderLocationState={props.currentFolderLocationState}
                     setCurrentFolderLocationState={props.setCurrentFolderLocationState}
+                    setFolderIdNewTaskState={setFolderIdNewTaskState}
                 />
                 <NewTaskPopupNotification
                     popupDataState={props.popupDataState}
                     exitAllPopups={props.exitAllPopups}
                     setPopupDataState={props.setPopupDataState}
+                    currentObjectTaskState={props.currentObjectTaskState}
                     setCurrentObjectTaskState={props.setCurrentObjectTaskState}
                     addTaskFunction={props.addTaskFunction}
+                    currentFolderLocationState={props.currentFolderLocationState}
+                    setCurrentFolderLocationState={props.setCurrentFolderLocationState}
+                    folderIdNewTaskState={folderIdNewTaskState}
                 />
                 <NewSubTaskPopupSetting
                     popupDataState={props.popupDataState}

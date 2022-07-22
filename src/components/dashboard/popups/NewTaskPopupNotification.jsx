@@ -35,16 +35,20 @@ export default function NewTaskPopupNotification(props) {
 
     function createNewTask(e) {
         e.preventDefault();
-        props.addTaskFunction({
-            types: props.setCurrentObjectTaskState.types,
-            status: props.setCurrentObjectTaskState.status,
-            name: props.setCurrentObjectTaskState.name,
-            idFolderLocation: props.setCurrentObjectTaskState.idFolderLocation,
-            asignedTo: props.setCurrentObjectTaskState.asignedTo,
-            dueDate: props.setCurrentObjectTaskState.dueDate,
-            priority: props.setCurrentObjectTaskState.priority,
-            descriptor: props.setCurrentObjectTaskState.descriptor,
-            subTask: props.setCurrentObjectTaskState.subTask,
+
+        console.log(props.currentObjectTaskState);
+
+        props.addTaskFunction(props.folderIdNewTaskState, {
+            id: Date.now(),
+            types: props.currentObjectTaskState.types,
+            status: props.currentObjectTaskState.status,
+            name: props.currentObjectTaskState.name,
+            idFolderLocation: props.currentObjectTaskState.idFolderLocation,
+            asignedTo: props.currentObjectTaskState.asignedTo,
+            dueDate: props.currentObjectTaskState.dueDate,
+            priority: props.currentObjectTaskState.priority,
+            descriptor: props.currentObjectTaskState.descriptor,
+            subTask: props.currentObjectTaskState.subTask,
             notification: notificationState
         })
     }

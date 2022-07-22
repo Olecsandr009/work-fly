@@ -61,100 +61,100 @@ export default function NewFolder(props) {
         return (
             <>
                 {
-                    array.map((object, index) => (
-                        <li key={index} className="all-tasks-list__task-item">
-                            <a data-burger-link="6" href="#" className="all-tasks-list__task-content">
-                                <div className="all-tasks-list__task-media">
-                                    <img src={avaImage} alt="" className="all-tasks-list__task-image" />
-                                </div>
-                                <div className="all-tasks-list__task-info">
-                                    <h4 className="all-tasks-list__task-name">
-                                        {object.name}
-                                        {console.log(object)}
-                                    </h4>
-                                    <div className="all-tasks-list__task-info-bottom">
-                                        <p className="all-tasks-list__task-length">5</p>
-                                        <img src={subTaskIcon} alt="" className="all-tasks-list__task-icon" />
-                                        <div className="all-tasks-list__task-line">
-                                            <span className="all-tasks-list__task-line-left"></span>
-                                            <span className="all-tasks-list__task-line-right"></span>
+                    array[arrayData.id] ?
+                        array[arrayData.id].map((object, index) => (
+                            <li key={index} className="all-tasks-list__task-item">
+                                <a data-burger-link="6" href="#" className="all-tasks-list__task-content">
+                                    <div className="all-tasks-list__task-media">
+                                        <img src={avaImage} alt="" className="all-tasks-list__task-image" />
+                                    </div>
+                                    <div className="all-tasks-list__task-info">
+                                        <h4 className="all-tasks-list__task-name">
+                                            {object.name}
+                                        </h4>
+                                        <div className="all-tasks-list__task-info-bottom">
+                                            <p className="all-tasks-list__task-length">5</p>
+                                            <img src={subTaskIcon} alt="" className="all-tasks-list__task-icon" />
+                                            <div className="all-tasks-list__task-line">
+                                                <span className="all-tasks-list__task-line-left"></span>
+                                                <span className="all-tasks-list__task-line-right"></span>
+                                            </div>
+                                            <p className="all-tasks-list__task-percent">
+                                                <span className="all-tasks-list__task-percent-text">30% Complete</span>
+                                            </p>
                                         </div>
-                                        <p className="all-tasks-list__task-percent">
-                                            <span className="all-tasks-list__task-percent-text">30% Complete</span>
-                                        </p>
+                                    </div>
+                                </a>
+                                <div className="all-tasks-list__task-status">
+                                    <span className="all-tasks-list__task-status-text">{object.status}</span>
+                                </div>
+                                <div className="all-tasks-list__task-priority">
+                                    <span className="all-tasks-list__task-priority-text">{object.priority}</span>
+                                </div>
+                                <div className="all-tasks-list__task-date">
+                                    <p className="all-tasks-list__task-date-top">4 Jun</p>
+                                    <p className="all-tasks-list__task-date-bottom">In 4 Months</p>
+                                </div>
+                                <div className="all-tasks-list__task-asign">
+                                    <a href="#" className="all-tasks-list__task-ava">
+                                        <img src={avaImage} alt="" className="all-tasks-list__task-ava-image" />
+                                    </a>
+                                    <a href="#" className="all-tasks-list__task-ava">
+                                        <img src={avaImage} alt="" className="all-tasks-list__task-ava-image" />
+                                    </a>
+                                    <a href="#" className="all-tasks-list__task-ava">
+                                        +3
+                                    </a>
+                                </div>
+                                <div className="all-tasks-list__task-links">
+                                    <a href="#" className="all-tasks-list__task-link">
+                                        <img src={attachIcon} alt="" className="all-tasks-list__task-link-icon" />
+                                        <span className="all-tasks-list__task-link-length"></span>
+                                    </a>
+                                    <a href="#" className="all-tasks-list__task-link">
+                                        <img src={messageIcon} alt="" className="all-tasks-list__task-link-icon" />
+                                    </a>
+                                    <div className="all-tasks-list__task-more-menu">
+                                        <a data-add-more="13" href="#" className="all-tasks-list__task-link more">
+                                            <img src={moreIcon} alt="Icon" className="all-tasks-list__task-link-icon" />
+                                        </a>
+
+                                        <ul data-add-more="13" className="all-tasks-list__more-menu">
+                                            <li className="all-tasks-list__more-menu-item">
+                                                <a data-burger-link="3" href="#" className="all-tasks-list__more-menu-link">
+                                                    <img src={renameIcon} alt="" className="all-tasks-list__more-menu-image" />
+                                                    Edit
+                                                </a>
+                                            </li>
+                                            <li className="all-tasks-list__more-menu-item">
+                                                <a href="#" className="all-tasks-list__more-menu-link">
+                                                    <img src={moveIcon} alt="" className="all-tasks-list__more-menu-image" />
+                                                    Move to..
+                                                </a>
+                                            </li>
+                                            <li className="all-tasks-list__more-menu-item">
+                                                <a data-burger-link="8" href="#" className="all-tasks-list__more-menu-link">
+                                                    <img src={docIcon} alt="" className="all-tasks-list__more-menu-image" />
+                                                    Save as template
+                                                </a>
+                                            </li>
+                                            <li className="all-tasks-list__more-menu-item">
+                                                <a data-burger-link="7" href="#" className="all-tasks-list__more-menu-link">
+                                                    <img src={contactsIcon} alt="" className="all-tasks-list__more-menu-image" />
+                                                    Accesses permissions
+                                                </a>
+                                            </li>
+                                            <li className="all-tasks-list__more-menu-item">
+                                                <a data-notification-link="1" href="#" className="all-tasks-list__more-menu-link">
+                                                    <img src={archiveIcon} alt="" className="all-tasks-list__more-menu-image" />
+                                                    Move to archive
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </a>
-                            <div className="all-tasks-list__task-status">
-                                <span className="all-tasks-list__task-status-text">{object.status}</span>
-                            </div>
-                            <div className="all-tasks-list__task-priority">
-                                <span className="all-tasks-list__task-priority-text">{object.priority}</span>
-                            </div>
-                            <div className="all-tasks-list__task-date">
-                                <p className="all-tasks-list__task-date-top">4 Jun</p>
-                                <p className="all-tasks-list__task-date-bottom">In 4 Months</p>
-                            </div>
-                            <div className="all-tasks-list__task-asign">
-                                <a href="#" className="all-tasks-list__task-ava">
-                                    <img src={avaImage} alt="" className="all-tasks-list__task-ava-image" />
-                                </a>
-                                <a href="#" className="all-tasks-list__task-ava">
-                                    <img src={avaImage} alt="" className="all-tasks-list__task-ava-image" />
-                                </a>
-                                <a href="#" className="all-tasks-list__task-ava">
-                                    +3
-                                </a>
-                            </div>
-                            <div className="all-tasks-list__task-links">
-                                <a href="#" className="all-tasks-list__task-link">
-                                    <img src={attachIcon} alt="" className="all-tasks-list__task-link-icon" />
-                                    <span className="all-tasks-list__task-link-length"></span>
-                                </a>
-                                <a href="#" className="all-tasks-list__task-link">
-                                    <img src={messageIcon} alt="" className="all-tasks-list__task-link-icon" />
-                                </a>
-                                <div className="all-tasks-list__task-more-menu">
-                                    <a data-add-more="13" href="#" className="all-tasks-list__task-link more">
-                                        <img src={moreIcon} alt="Icon" className="all-tasks-list__task-link-icon" />
-                                    </a>
-
-                                    <ul data-add-more="13" className="all-tasks-list__more-menu">
-                                        <li className="all-tasks-list__more-menu-item">
-                                            <a data-burger-link="3" href="#" className="all-tasks-list__more-menu-link">
-                                                <img src={renameIcon} alt="" className="all-tasks-list__more-menu-image" />
-                                                Edit
-                                            </a>
-                                        </li>
-                                        <li className="all-tasks-list__more-menu-item">
-                                            <a href="#" className="all-tasks-list__more-menu-link">
-                                                <img src={moveIcon} alt="" className="all-tasks-list__more-menu-image" />
-                                                Move to..
-                                            </a>
-                                        </li>
-                                        <li className="all-tasks-list__more-menu-item">
-                                            <a data-burger-link="8" href="#" className="all-tasks-list__more-menu-link">
-                                                <img src={docIcon} alt="" className="all-tasks-list__more-menu-image" />
-                                                Save as template
-                                            </a>
-                                        </li>
-                                        <li className="all-tasks-list__more-menu-item">
-                                            <a data-burger-link="7" href="#" className="all-tasks-list__more-menu-link">
-                                                <img src={contactsIcon} alt="" className="all-tasks-list__more-menu-image" />
-                                                Accesses permissions
-                                            </a>
-                                        </li>
-                                        <li className="all-tasks-list__more-menu-item">
-                                            <a data-notification-link="1" href="#" className="all-tasks-list__more-menu-link">
-                                                <img src={archiveIcon} alt="" className="all-tasks-list__more-menu-image" />
-                                                Move to archive
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    ))
+                            </li>
+                        )) : undefined
                 }
             </>
         )
