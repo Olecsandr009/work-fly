@@ -51,6 +51,8 @@ export default function NewTaskPopupNotification(props) {
             subTask: props.currentObjectTaskState.subTask,
             notification: notificationState
         })
+
+        props.exitAllPopups()
     }
 
     return (

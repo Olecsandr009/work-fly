@@ -18,14 +18,15 @@ import NewFolder from "./components/dashboard/NewFolder";
 import "./files/css/style.css";
 import Authentication from "./components/Authentication";
 import EmptyDashboard from "./components/dashboard/EmptyDashboard";
-// import "../public/js/app.min"
 
 export default function App(props) {
 
-    // console.log(props.allTasksArray)
+    /* ========================== State ========================= */
 
+    // Стан нашого модального вікна
     let [popupDataState, setPopupDataState] = useState(0);
 
+    // Дані при створенні нового таска
     let [currentObjectTaskState, setCurrentObjectTaskState] = useState({
         id: "",
         types: "",
@@ -40,12 +41,17 @@ export default function App(props) {
         notification: "Default"
     });
 
+    // ID нашої поточної папки в якій ми створюємо таск
     let [currentFolderLocationId, setCurrentFolderLocationId] = useState("");
 
+    // Поточна папка в якій ми будемо створювати таск
     let [currentFolderLocationState, setCurrentFolderLocationState] = useState({});
 
-    // console.log(currentObjectTaskState);
+    let newTaskSetting = [];
 
+    /* ========================== Functions ============================= */
+
+    // Фукція для закриття всіх модальних вікон
     function exitAllPopups(e) {
         if (e) {
             e.preventDefault()
@@ -67,6 +73,7 @@ export default function App(props) {
         setCurrentFolderLocationState({});
     }
 
+    // Функція для закриття модальних вікон при кліку за межами вікна
     window.addEventListener("click", e => {
         const burger = document.querySelectorAll("[data-burger]");
 
@@ -98,8 +105,6 @@ export default function App(props) {
         }
     })
 
-    let newTaskSetting = [];
-
     return (
 
         <>
@@ -113,18 +118,42 @@ export default function App(props) {
                     </Route>
                     <Route element={
                         <Dashboard
+                            // Масив з всіма папками
                             allFoldersArray={props.allFoldersArray}
+
+                            // Функція для закриття модальних вікон
                             exitAllPopups={exitAllPopups}
+
+                            // Стан модального вікна
                             popupDataState={popupDataState}
+
+                            // Функція для зміни стану вікна
                             setPopupDataState={setPopupDataState}
+
+                            // Функція для створення нової папки
                             addFolderFunction={props.addFolderFunction}
+
                             newTaskSetting={newTaskSetting}
+
+                            // Функція для створення нового таска
                             addTaskFunction={props.addTaskFunction}
+
+                            // Функція для зміни даних поточного таска (який зараз створюється)
                             setCurrentObjectTaskState={setCurrentObjectTaskState}
+
+                            // Дані таска що зараз створюється
                             currentObjectTaskState={currentObjectTaskState}
+
+                            // ID поточної папки
                             currentFolderLocationId={currentFolderLocationId}
+
+                            // Дані поточної папки
                             currentFolderLocationState={currentFolderLocationState}
+
+                            // Функція для зміни даних поточної папки
                             setCurrentFolderLocationState={setCurrentFolderLocationState}
+
+                            // Функція для створення нового масиву тасків по ідентифікатору папки
                             addIdObject={props.addIdObject}
                         />
                     } path="/Dashboard">
@@ -133,9 +162,17 @@ export default function App(props) {
                             path="/Dashboard/Task-manager"
                             element={
                                 <TaskManager
+
+                                    // Стан модального вікна
                                     popupDataState={popupDataState}
+
+                                    // Функція для зміни стану вікна
                                     setPopupDataState={setPopupDataState}
+
+                                    // Функція для закриття модальних вікон
                                     exitAllPopups={exitAllPopups}
+
+                                    // Масив з всіма папками
                                     allFoldersArray={props.allFoldersArray}
                                 />
                             }
@@ -144,10 +181,19 @@ export default function App(props) {
                             path="/Dashboard/New-folder"
                             element={
                                 <NewFolder
+
+                                    // Функція для зміни стану вікна
                                     setPopupDataState={setPopupDataState}
+
+                                    // Функція для закриття модальних вікон
                                     exitAllPopups={exitAllPopups}
+
+                                    // Масив всіх тасків
                                     allTasksArray={props.allTasksArray}
+
                                     newTaskSetting={newTaskSetting}
+
+                                    // Функція для встановлення ID папки в яку створювати таск
                                     setCurrentFolderLocationId={setCurrentFolderLocationId}
                                 />
                             }
